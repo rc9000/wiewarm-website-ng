@@ -32,7 +32,7 @@ const includes = (value: string, query: string) => value.toLocaleLowerCase('de-C
 
 export function filterAndSortTemperatures(rows: CurrentTemperature[], query: TemperatureQuery): CurrentTemperature[] {
   const filtered = rows.filter((row) => {
-    const searchable = `${row.ort} ${row.bad} ${row.becken} ${row.plz} ${row.kanton}`;
+    const searchable = `${row.ort} ${row.bad} ${row.becken} ${row.temp} ${row.temp.toFixed(1)} ${row.date} ${row.datePretty} ${row.plz} ${row.kanton}`;
     return (!query.q || includes(searchable, query.q)) && (!query.ort || includes(row.ort, query.ort)) &&
       (!query.bad || includes(row.bad, query.bad)) && (!query.becken || includes(row.becken, query.becken)) &&
       (!query.plz || includes(row.plz, query.plz)) && (!query.kanton || row.kanton === query.kanton);

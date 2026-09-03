@@ -57,20 +57,14 @@
 .eyebrow svg { width: 1.1rem; }
 .error-card h1 { margin: 0; max-width: 760px; font-size: clamp(2.25rem, 6vw, 4.8rem); line-height: .98; letter-spacing: -.065em; }
 .finder-card { overflow: hidden; border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.4rem; background: color-mix(in oklch, var(--card) 96%, transparent); box-shadow: 0 24px 70px oklch(.3 .08 220 / .12); }
-.filter-bar { display: flex; align-items: end; gap: .75rem; padding: 1.15rem; background: oklch(.985 .008 200); border-bottom: 1px solid var(--border); }
+.filter-bar { padding: 1.15rem; background: oklch(.985 .008 200); border-bottom: 1px solid var(--border); }
 .search-field { position: relative; flex: 1; min-width: 14rem; }
-.search-field svg { position: absolute; left: .85rem; top: .72rem; width: 1.05rem; z-index: 1; color: var(--muted-foreground); }
-.search-field input { height: 2.8rem; padding-left: 2.5rem; background: white; }
-.select-field { display: grid; gap: .35rem; font-size: .76rem; font-weight: 750; color: var(--muted-foreground); }
-.filter-select { height: 2.8rem; min-width: 9rem; background: white; }
-.filter-bar [data-slot=button] { height: 2.8rem; }
+.search-field svg { position: absolute; left: .95rem; top: .84rem; width: 1.1rem; z-index: 1; color: var(--muted-foreground); }
+.search-field input { height: 3rem; padding-left: 2.7rem; background: white; }
 .result-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.4rem; padding: .8rem 1.2rem; }
 .result-bar p { margin: 0; color: var(--muted-foreground); }
 .result-bar strong { color: var(--foreground); }
 .page-size-form { display: flex; align-items: center; gap: .55rem; color: var(--muted-foreground); font-size: .85rem; }
-.column-filters { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr .65fr auto; align-items: end; gap: .65rem; padding: 0 1.2rem 1rem; background: white; }
-.column-filters label { display: grid; gap: .3rem; color: var(--muted-foreground); font-size: .74rem; font-weight: 750; }
-.column-filters input { background: oklch(.985 .008 200); }
 .temperature-table { min-width: 850px; border-top: 1px solid var(--border); }
 .temperature-table th { padding-inline: 1rem; height: 3rem; background: oklch(.95 .025 202); }
 .temperature-table td { padding: .85rem 1rem; }
@@ -145,11 +139,10 @@
 @media (max-width: 760px) {
   .site-shell { width: min(100% - 1.2rem, 1180px); }.page-main { padding-block: 2rem; }.home-main { padding-top: .35rem; }
   .filter-bar { align-items: stretch; flex-direction: column; }.search-field { min-width: 0; }
-  .select-field, .filter-select { width: 100%; }.result-bar, .footer-inner { align-items: flex-start; flex-direction: column; }.page-size-form { flex-wrap: wrap; }
-  .column-filters { grid-template-columns: 1fr 1fr; }.column-filters [data-slot=button] { grid-column: 1 / -1; }
+  .result-bar, .footer-inner { align-items: flex-start; flex-direction: column; }.page-size-form { flex-wrap: wrap; }
   .detail-hero { align-items: start; flex-direction: column; }.detail-layout { grid-template-columns: 1fr; }.detail-sidebar { position: static; grid-row: 1; }
   .hero-temperature { min-width: 8.5rem; }.info-grid { grid-template-columns: 1fr; }.info-wide { grid-column: auto; }
   .image-gallery { grid-template-columns: 1fr 1fr; }.image-gallery a.gallery-featured { grid-column: 1 / -1; min-height: 17rem; }.notice-list article { grid-template-columns: 1fr; gap: .35rem; }
 }
 
-@media (max-width: 450px) { .column-filters, .image-gallery { grid-template-columns: 1fr; }.image-gallery a.gallery-featured { grid-column: auto; min-height: 14rem; } }
+@media (max-width: 450px) { .image-gallery { grid-template-columns: 1fr; }.image-gallery a.gallery-featured { grid-column: auto; min-height: 14rem; } }

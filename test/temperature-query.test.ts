@@ -12,9 +12,12 @@ describe('temperature query', () => {
     expect(parseTemperatureQuery({ page: '-2', pageSize: '99', sort: 'oops', kanton: 'alle' })).toMatchObject({ page: 1, pageSize: 10, sort: 'date', direction: 'desc', kanton: '' });
   });
 
-  it('filters across the global text and exact canton', () => {
+  it('filters across every displayed field and exact canton', () => {
     const query = parseTemperatureQuery({ q: 'see', kanton: 'ZH' });
     expect(filterAndSortTemperatures(rows, query).map((row) => row.badid)).toEqual(['2']);
+    expect(filterAndSortTemperatures(rows, parseTemperatureQuery({ q: '24.8' })).map((row) => row.badid)).toEqual(['2']);
+    expect(filterAndSortTemperatures(rows, parseTemperatureQuery({ q: '10:00' })).map((row) => row.badid)).toEqual(['2']);
+    expect(filterAndSortTemperatures(rows, parseTemperatureQuery({ q: 'ZH' })).map((row) => row.badid)).toEqual(['2']);
   });
 
   it('sorts temperatures numerically and keeps query state shareable', () => {

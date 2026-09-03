@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowDown, ArrowUp, Search, SlidersHorizontal, ThermometerSun } from 'lucide-react';
+import { ArrowDown, ArrowUp, Search, ThermometerSun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
@@ -29,7 +29,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
     return <TemperatureError />;
   }
 
-  const cantons = [...new Set(rows.map((row) => row.kanton).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de-CH'));
   const filtered = filterAndSortTemperatures(rows, query);
   const pageSize = query.pageSize === 'all' ? Math.max(filtered.length, 1) : query.pageSize;
   const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
@@ -39,17 +38,9 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
   return <main className="site-shell page-main home-main">
     <section className="finder-card" aria-label={`Temperatursuche mit ${rows.length} Messwerten`}>
       <form className="filter-bar" action="/" method="get">
-        <label className="search-field" htmlFor="global-search"><span className="sr-only">Überall suchen</span><Search aria-hidden="true" />
-          <Input id="global-search" name="q" defaultValue={query.q} placeholder="Ort, Bad, Becken oder PLZ" /></label>
-        <label className="select-field" htmlFor="canton-filter"><span>Kanton</span>
-          <Select name="kanton" defaultValue={query.kanton || 'alle'}>
-            <SelectTrigger id="canton-filter" className="filter-select"><SelectValue /></SelectTrigger>
-            <SelectContent><SelectItem value="alle">Alle Kantone</SelectItem>{cantons.map((canton) => <SelectItem key={canton} value={canton}>{canton}</SelectItem>)}</SelectContent>
-          </Select>
-        </label>
+        <label className="search-field" htmlFor="global-search"><span className="sr-only">Alle Felder durchsuchen</span><Search aria-hidden="true" />
+          <Input id="global-search" name="q" type="search" defaultValue={query.q} placeholder="Alle Felder durchsuchen …" /></label>
         <input type="hidden" name="sort" value={query.sort} /><input type="hidden" name="direction" value={query.direction} />
-        <Button type="submit" size="lg"><SlidersHorizontal aria-hidden="true" /> Anzeigen</Button>
-        <Button variant="ghost" size="lg" nativeButton={false} render={<Link href="/" />}>Zurücksetzen</Button>
       </form>
 
       <div className="result-bar"><p><strong>{filtered.length}</strong> Treffer</p>
@@ -61,17 +52,6 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
           </SelectContent></Select><Button type="submit" variant="outline">Übernehmen</Button>
         </form>
       </div>
-
-      <form className="column-filters" action="/" method="get">
-        {query.q ? <input type="hidden" name="q" value={query.q} /> : null}
-        {query.kanton ? <input type="hidden" name="kanton" value={query.kanton} /> : null}
-        <input type="hidden" name="sort" value={query.sort} /><input type="hidden" name="direction" value={query.direction} />
-        <label htmlFor="ort-filter"><span>Ort</span><Input id="ort-filter" name="ort" defaultValue={query.ort} placeholder="z. B. Bern" /></label>
-        <label htmlFor="bad-filter"><span>Bad</span><Input id="bad-filter" name="bad" defaultValue={query.bad} placeholder="Name" /></label>
-        <label htmlFor="becken-filter"><span>Becken</span><Input id="becken-filter" name="becken" defaultValue={query.becken} placeholder="See, Fluss …" /></label>
-        <label htmlFor="plz-filter"><span>PLZ</span><Input id="plz-filter" name="plz" defaultValue={query.plz} inputMode="numeric" placeholder="PLZ" /></label>
-        <Button type="submit" variant="secondary">Spalten filtern</Button>
-      </form>
 
       {visible.length ? <Table className="temperature-table"><TableHeader><TableRow>
         {(['ort', 'bad', 'becken', 'temp', 'date', 'plz', 'kanton'] as SortColumn[]).map((column) => <TableHead key={column}><SortLink column={column} query={query} /></TableHead>)}
