@@ -2,13 +2,23 @@
 
 import { useEffect, useState, useSyncExternalStore } from 'react';
 
-const fonts = [
+const cleanFonts = [
   { value: 'geist', label: 'Geist' },
   { value: 'manrope', label: 'Manrope' },
   { value: 'dm-sans', label: 'DM Sans' },
   { value: 'ibm-plex-sans', label: 'IBM Plex Sans' },
   { value: 'nunito-sans', label: 'Nunito Sans' },
 ] as const;
+
+const expressiveFonts = [
+  { value: 'space-grotesk', label: 'Space Grotesk' },
+  { value: 'bricolage-grotesque', label: 'Bricolage Grotesque' },
+  { value: 'syne', label: 'Syne' },
+  { value: 'unbounded', label: 'Unbounded' },
+  { value: 'fraunces', label: 'Fraunces' },
+] as const;
+
+const fonts = [...cleanFonts, ...expressiveFonts];
 
 type FontValue = (typeof fonts)[number]['value'];
 const fontStorageKey = 'wiewarm-font';
@@ -55,7 +65,12 @@ export function FontSelector() {
       localStorage.setItem(fontStorageKey, nextFont);
       applyFont(nextFont);
     }}>
-      {fonts.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+      <optgroup label="Clean">
+        {cleanFonts.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+      </optgroup>
+      <optgroup label="Wilder">
+        {expressiveFonts.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+      </optgroup>
     </select>
   </label>;
 }

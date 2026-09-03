@@ -31,6 +31,11 @@ html[data-font='manrope'] { --font-body: "Manrope Variable", sans-serif; --font-
 html[data-font='dm-sans'] { --font-body: "DM Sans Variable", sans-serif; --font-heading-face: "DM Sans Variable", sans-serif; }
 html[data-font='ibm-plex-sans'] { --font-body: "IBM Plex Sans Variable", sans-serif; --font-heading-face: "IBM Plex Sans Variable", sans-serif; }
 html[data-font='nunito-sans'] { --font-body: "Nunito Sans Variable", sans-serif; --font-heading-face: "Nunito Sans Variable", sans-serif; }
+html[data-font='space-grotesk'] { --font-body: "Space Grotesk Variable", sans-serif; --font-heading-face: "Space Grotesk Variable", sans-serif; }
+html[data-font='bricolage-grotesque'] { --font-body: "Bricolage Grotesque Variable", sans-serif; --font-heading-face: "Bricolage Grotesque Variable", sans-serif; }
+html[data-font='syne'] { --font-body: "Syne Variable", sans-serif; --font-heading-face: "Syne Variable", sans-serif; }
+html[data-font='unbounded'] { --font-body: "Unbounded Variable", sans-serif; --font-heading-face: "Unbounded Variable", sans-serif; }
+html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-heading-face: "Fraunces Variable", serif; }
 
 .dark {
   --background: oklch(.2 .05 232); --foreground: oklch(.95 .02 205); --card: oklch(.25 .055 230); --card-foreground: var(--foreground);
