@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { Geist, Manrope } from 'next/font/google';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/dm-sans';
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource-variable/nunito-sans';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import './globals.css';
-
-const bodyFont = Geist({ variable: '--font-body', subsets: ['latin'] });
-const headingFont = Manrope({ variable: '--font-heading-face', subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wiewarm.ch'),
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="de-CH"><body className={`${bodyFont.variable} ${headingFont.variable}`}>
+  return <html lang="de-CH"><body>
     <div className="page-frame"><SiteHeader />{children}<SiteFooter /></div>
   </body></html>;
 }

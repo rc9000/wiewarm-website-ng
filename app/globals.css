@@ -18,12 +18,19 @@
 }
 
 :root {
+  --font-body: "Geist Variable", sans-serif; --font-heading-face: "Geist Variable", sans-serif;
   --background: oklch(.975 .016 205); --foreground: oklch(.24 .055 230);
   --card: oklch(1 0 0); --card-foreground: var(--foreground); --popover: oklch(1 0 0); --popover-foreground: var(--foreground);
   --primary: oklch(.55 .135 216); --primary-foreground: oklch(1 0 0); --secondary: oklch(.92 .058 190); --secondary-foreground: oklch(.27 .07 215);
   --muted: oklch(.95 .025 205); --muted-foreground: oklch(.48 .045 225); --accent: oklch(.86 .15 85); --accent-foreground: oklch(.28 .07 60);
   --destructive: oklch(.58 .22 28); --border: oklch(.86 .04 210); --input: oklch(.85 .04 210); --ring: oklch(.62 .14 210); --radius: .8rem;
 }
+
+html[data-font='geist'] { --font-body: "Geist Variable", sans-serif; --font-heading-face: "Geist Variable", sans-serif; }
+html[data-font='manrope'] { --font-body: "Manrope Variable", sans-serif; --font-heading-face: "Manrope Variable", sans-serif; }
+html[data-font='dm-sans'] { --font-body: "DM Sans Variable", sans-serif; --font-heading-face: "DM Sans Variable", sans-serif; }
+html[data-font='ibm-plex-sans'] { --font-body: "IBM Plex Sans Variable", sans-serif; --font-heading-face: "IBM Plex Sans Variable", sans-serif; }
+html[data-font='nunito-sans'] { --font-body: "Nunito Sans Variable", sans-serif; --font-heading-face: "Nunito Sans Variable", sans-serif; }
 
 .dark {
   --background: oklch(.2 .05 232); --foreground: oklch(.95 .02 205); --card: oklch(.25 .055 230); --card-foreground: var(--foreground);
@@ -51,6 +58,8 @@
 .brand-mark svg { position: absolute; width: 1.15rem; }
 .brand-mark svg:first-child { transform: translateY(-.36rem); }
 .brand-mark svg:last-child { transform: translateY(.45rem); }
+.font-selector { display: flex; align-items: center; gap: .55rem; color: var(--muted-foreground); font-size: .78rem; font-weight: 750; }
+.font-selector select { min-width: 10.5rem; height: 2.35rem; padding: 0 2rem 0 .75rem; border: 1px solid var(--border); border-radius: .65rem; color: var(--foreground); background: white; font: inherit; cursor: pointer; }
 .page-main { flex: 1; padding-block: clamp(2rem, 6vw, 5rem); }
 .home-main { padding-top: .7rem; }
 .eyebrow { display: flex; align-items: center; gap: .5rem; margin: 0 0 .7rem; color: oklch(.39 .105 210); font-size: .83rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
