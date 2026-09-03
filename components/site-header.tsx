@@ -7,6 +7,5 @@ export function SiteHeader() {
       <span className="brand-mark"><Sun aria-hidden="true" /><Waves aria-hidden="true" /></span>
       <span>wiewarm<span>.ch</span></span>
     </Link>
-    <p className="header-note">Wassertemperaturen der Schweiz</p>
   </div></header>;
 }

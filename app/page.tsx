@@ -36,15 +36,8 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
   const page = Math.min(query.page, pageCount);
   const visible = filtered.slice((page - 1) * pageSize, page * pageSize);
 
-  return <main className="site-shell page-main">
-    <section className="finder-intro" aria-labelledby="temperatures-title">
-      <div><p className="eyebrow"><ThermometerSun aria-hidden="true" /> Live aus Schweizer Badis</p>
-        <h1 id="temperatures-title">Wie warm ist das Wasser?</h1>
-        <p>Finde aktuelle Temperaturen von Seen, Flüssen, Frei- und Hallenbädern.</p></div>
-      <div className="sun-orbit" aria-hidden="true"><span>{rows.length}</span><small>Messwerte</small></div>
-    </section>
-
-    <section className="finder-card" aria-label="Temperatursuche">
+  return <main className="site-shell page-main home-main">
+    <section className="finder-card" aria-label={`Temperatursuche mit ${rows.length} Messwerten`}>
       <form className="filter-bar" action="/" method="get">
         <label className="search-field" htmlFor="global-search"><span className="sr-only">Überall suchen</span><Search aria-hidden="true" />
           <Input id="global-search" name="q" defaultValue={query.q} placeholder="Ort, Bad, Becken oder PLZ" /></label>
