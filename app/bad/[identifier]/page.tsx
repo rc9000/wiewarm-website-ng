@@ -64,9 +64,6 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
     <header className="detail-hero">
       <div><p className="eyebrow"><Waves aria-hidden="true" /> {location.canton || 'Schweiz'}</p>
         <h1>{location.name}</h1><p>{location.postalCode} {location.city}</p></div>
-      {location.basins[0]?.temp !== null && location.basins[0]?.temp !== undefined ? <div className="hero-temperature">
-        <span>{formatTemperature(location.basins[0].temp)}</span><small>{location.basins[0].name}</small>
-      </div> : null}
     </header>
 
     <div className="detail-layout">
