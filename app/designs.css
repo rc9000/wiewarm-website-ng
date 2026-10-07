@@ -49,10 +49,6 @@
 
 /* Second Try keeps First Try intact, minus its decorative top-right circle. */
 html[data-design='second-try'] .page-frame { background: linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
-html[data-design='second-try'] .brand-mark { width: 3.25rem; height: 3.25rem; border-radius: 50%; background: linear-gradient(145deg, oklch(.9 .14 91), oklch(.84 .15 78)); }
-html[data-design='second-try'] .brand-thermometer { z-index: 1; display: block; width: 1.1rem; height: 1.75rem; color: oklch(.4 .12 220); transform: translate(-.08rem, -.08rem) rotate(-17deg); }
-html[data-design='second-try'] .brand-sun { display: none; }
-html[data-design='second-try'] .brand-waves { z-index: 2; width: 1.55rem; color: oklch(.48 .13 193); transform: translate(.12rem, .43rem) rotate(-3deg); }
 
 html[data-design='amiga'],
 html[data-design='amiga'] body {

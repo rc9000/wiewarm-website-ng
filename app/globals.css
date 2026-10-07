@@ -61,7 +61,6 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .brand > span:last-child span { color: var(--primary); }
 .brand-mark { position: relative; display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border: 2px solid var(--foreground); border-radius: 50%; color: var(--foreground); background: var(--accent); box-shadow: 4px 4px 0 #ff654f; }
 .brand-mark svg { position: absolute; width: 1.15rem; }
-.brand-thermometer { display: none; }
 .brand-sun { transform: translateY(-.36rem); }
 .brand-waves { transform: translateY(.45rem); }
 .header-tools { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: .65rem 1rem; }
