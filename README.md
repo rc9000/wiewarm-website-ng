@@ -44,14 +44,13 @@ This decision may only be changed by a majority vote of the full council.
 
 ## Design selection mode
 
-The local design lab is available at
-[http://localhost:3001/?designselect=true](http://localhost:3001/?designselect=true).
-It currently includes **Swiss Lido**, the restored **First Try**, a circle-free
-**Second Try**, **Amiga Chiptune**, **Modern macOS**, **Vintage 60s**,
-**MS-DOS**, and a darker cathedral-inspired **Goth** experiment. The selected
-design persists while browsing.
+The design selector is always visible in the site header, including in a fresh
+browser session. It currently includes **Swiss Lido**, the restored **First
+Try**, a circle-free **Second Try**, **Amiga Chiptune**, **Modern macOS**,
+**Vintage 60s**, **MS-DOS**, and a darker cathedral-inspired **Goth**
+experiment. The selected design persists while browsing.
 
-Use `?fontselect=true&designselect=true` to show both design and font controls.
+Use `?fontselect=true` to show the additional font control.
 
 ## Data source
 
