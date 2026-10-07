@@ -1,0 +1,98 @@
+/*
+ * Visual variants live here so they can evolve independently of layout and
+ * application behavior. Swiss Lido is the default defined in globals.css.
+ */
+
+html[data-design='first-try'],
+html[data-design='first-try'] body {
+  --background: oklch(.975 .016 205); --foreground: oklch(.24 .055 230);
+  --card: oklch(1 0 0); --card-foreground: var(--foreground); --popover: oklch(1 0 0); --popover-foreground: var(--foreground);
+  --primary: oklch(.55 .135 216); --primary-foreground: oklch(1 0 0); --secondary: oklch(.92 .058 190); --secondary-foreground: oklch(.27 .07 215);
+  --muted: oklch(.95 .025 205); --muted-foreground: oklch(.48 .045 225); --accent: oklch(.86 .15 85); --accent-foreground: oklch(.28 .07 60);
+  --destructive: oklch(.58 .22 28); --border: oklch(.86 .04 210); --input: oklch(.85 .04 210); --ring: oklch(.62 .14 210); --radius: .8rem;
+}
+
+html[data-design='first-try'] .page-frame { background: radial-gradient(circle at 86% 5%, color-mix(in oklch, var(--accent) 28%, transparent) 0 8rem, transparent 8.1rem), linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
+html[data-design='first-try'] .site-header { padding: 1rem 0; border-bottom: 0; }
+html[data-design='first-try'] .brand { color: oklch(.28 .09 222); font-weight: 800; font-size: 1.4rem; letter-spacing: -.04em; }
+html[data-design='first-try'] .brand > span:last-child span { color: var(--primary); }
+html[data-design='first-try'] .brand-mark { border: 0; border-radius: 50%; color: oklch(.38 .12 214); background: var(--accent); box-shadow: 0 7px 20px oklch(.45 .13 211 / .16); }
+html[data-design='first-try'] .font-selector, html[data-design='first-try'] .design-selector { color: var(--muted-foreground); font-weight: 750; }
+html[data-design='first-try'] .font-selector select, html[data-design='first-try'] .design-selector select { border: 1px solid var(--border); border-radius: .65rem; }
+html[data-design='first-try'] .eyebrow { color: oklch(.39 .105 210); font-weight: 800; }
+html[data-design='first-try'] .finder-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.4rem; background: color-mix(in oklch, var(--card) 96%, transparent); box-shadow: 0 24px 70px oklch(.3 .08 220 / .12); }
+html[data-design='first-try'] .filter-bar { background: oklch(.985 .008 200); border-bottom: 1px solid var(--border); }
+html[data-design='first-try'] .search-field svg { color: var(--muted-foreground); }
+html[data-design='first-try'] .search-field input { border: 1px solid var(--input); }
+html[data-design='first-try'] .temperature-table { border-top: 1px solid var(--border); }
+html[data-design='first-try'] .temperature-table th { color: var(--foreground); background: oklch(.95 .025 202); }
+html[data-design='first-try'] .temperature-table tbody tr:nth-child(even) { background: oklch(.98 .012 205); }
+html[data-design='first-try'] .sort-link { color: var(--muted-foreground); }
+html[data-design='first-try'] .pool-link { color: oklch(.38 .12 215); font-weight: 680; }
+html[data-design='first-try'] .temperature-value { border: 0; border-radius: 999px; color: oklch(.29 .08 214); background: var(--secondary); font-weight: 800; }
+html[data-design='first-try'] .canton-pill { border-radius: .45rem; background: oklch(.93 .04 210); font-weight: 800; }
+html[data-design='first-try'] .table-pagination { border-top: 1px solid var(--border); }
+html[data-design='first-try'] .error-card { border: 0; border-radius: 1.5rem; box-shadow: 0 20px 60px oklch(.3 .08 220 / .12); }
+html[data-design='first-try'] .back-link { color: var(--muted-foreground); font-weight: 500; }
+html[data-design='first-try'] .detail-card, html[data-design='first-try'] .contact-card, html[data-design='first-try'] .weather-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.3rem; box-shadow: 0 16px 50px oklch(.3 .08 220 / .09); }
+html[data-design='first-try'] .section-icon { border: 0; border-radius: .85rem; background: var(--secondary); color: oklch(.36 .11 215); }
+html[data-design='first-try'] .section-icon.sunny { background: color-mix(in oklch, var(--accent) 60%, white); color: var(--accent-foreground); }
+html[data-design='first-try'] .basin-table th { color: var(--foreground); background: var(--muted); }
+html[data-design='first-try'] .detail-temp { color: oklch(.36 .12 214); font-weight: 800; }
+html[data-design='first-try'] .stale-label { color: oklch(.55 .14 47) !important; font-weight: 700; }
+html[data-design='first-try'] .notice-list article { border-left: 0; border-radius: .9rem; background: color-mix(in oklch, var(--accent) 16%, white); }
+html[data-design='first-try'] .contact-links a { color: oklch(.38 .115 214); }
+html[data-design='first-try'] .uv-reading, html[data-design='first-try'] .weather-reading { border: 0; border-radius: 1rem; background: color-mix(in oklch, var(--accent) 48%, white); }
+html[data-design='first-try'] .site-footer { margin-top: 0; color: var(--muted-foreground); background: transparent; }
+html[data-design='first-try'] .footer-inner { border-top: 1px solid var(--border); padding-top: 1.3rem; }
+html[data-design='first-try'] .footer-inner a { color: inherit; }
+
+html[data-design='amiga'],
+html[data-design='amiga'] body {
+  --background: #160b2d; --foreground: #f8f5ff;
+  --card: #241448; --card-foreground: #f8f5ff; --popover: #241448; --popover-foreground: #f8f5ff;
+  --primary: #00e5ff; --primary-foreground: #130923; --secondary: #ff3cac; --secondary-foreground: #160b2d;
+  --muted: #382361; --muted-foreground: #d2c4ff; --accent: #fff200; --accent-foreground: #160b2d;
+  --destructive: #ff3cac; --border: #00e5ff; --input: #00e5ff; --ring: #fff200; --radius: 0;
+}
+
+html[data-design='amiga'] .page-frame { background: repeating-linear-gradient(0deg, rgb(255 255 255 / .025) 0 2px, transparent 2px 4px), linear-gradient(125deg, #ff3cac 0, #662d91 48%, #00b8d4 100%) top / 100% 10rem no-repeat, var(--background); }
+html[data-design='amiga'] .site-header { border-bottom: 4px solid #fff200; box-shadow: inset 0 -7px 0 #ff3cac; }
+html[data-design='amiga'] .brand { color: white; font-weight: 900; letter-spacing: .02em; text-transform: uppercase; }
+html[data-design='amiga'] .brand > span:last-child span { color: #fff200; }
+html[data-design='amiga'] .brand-mark { border: 3px solid #160b2d; border-radius: 0; color: #160b2d; background: #fff200; box-shadow: 5px 5px 0 #00e5ff; }
+html[data-design='amiga'] .font-selector, html[data-design='amiga'] .design-selector { color: white; text-transform: uppercase; }
+html[data-design='amiga'] .font-selector select, html[data-design='amiga'] .design-selector select { border: 3px solid #00e5ff; border-radius: 0; color: white; background: #241448; box-shadow: 3px 3px 0 #fff200; }
+html[data-design='amiga'] .finder-card { border: 3px solid #00e5ff; border-radius: 0; background: var(--card); box-shadow: 9px 9px 0 #ff3cac; }
+html[data-design='amiga'] .filter-bar { background: #662d91; border-bottom: 3px solid #fff200; }
+html[data-design='amiga'] .search-field svg { color: #fff200; }
+html[data-design='amiga'] .search-field input { border: 3px solid #00e5ff; border-radius: 0; color: white; background: #160b2d; box-shadow: 4px 4px 0 #ff3cac; }
+html[data-design='amiga'] .search-field input::placeholder { color: #d2c4ff; }
+html[data-design='amiga'] .temperature-table { border-top: 3px solid #00e5ff; }
+html[data-design='amiga'] .temperature-table th { color: white; background: #662d91; }
+html[data-design='amiga'] body .temperature-table tbody tr { background: #241448; }
+html[data-design='amiga'] body .temperature-table tbody tr:nth-child(even) { background: #321b5a; }
+html[data-design='amiga'] .temperature-table td, html[data-design='amiga'] .temperature-table tr { border-color: #00e5ff; }
+html[data-design='amiga'] .sort-link { color: white; letter-spacing: .09em; }
+html[data-design='amiga'] .pool-link, html[data-design='amiga'] .detail-temp, html[data-design='amiga'] .contact-links a { color: #00e5ff; }
+html[data-design='amiga'] .temperature-value { border: 2px solid #160b2d; border-radius: 0; color: #160b2d; background: #fff200; box-shadow: 3px 3px 0 #ff3cac; }
+html[data-design='amiga'] .canton-pill { border-radius: 0; color: #160b2d; background: #00e5ff; }
+html[data-design='amiga'] .table-pagination { border-top: 3px solid #00e5ff; }
+html[data-design='amiga'] .back-link { color: white; text-transform: uppercase; }
+html[data-design='amiga'] .detail-card, html[data-design='amiga'] .contact-card, html[data-design='amiga'] .weather-card, html[data-design='amiga'] .error-card { border: 3px solid #00e5ff; border-radius: 0; color: white; background: #241448; box-shadow: 7px 7px 0 #ff3cac; }
+html[data-design='amiga'] .section-heading p, html[data-design='amiga'] .eyebrow { color: #fff200; letter-spacing: .12em; }
+html[data-design='amiga'] .section-icon { border: 2px solid #fff200; border-radius: 0; color: #160b2d; background: #00e5ff; box-shadow: 3px 3px 0 #ff3cac; }
+html[data-design='amiga'] .section-icon.sunny { background: #fff200; }
+html[data-design='amiga'] .basin-table th { color: white; background: #662d91; }
+html[data-design='amiga'] .notice-list article { border-left: .5rem solid #fff200; border-radius: 0; background: #382361; }
+html[data-design='amiga'] .preformatted { color: #f8f5ff; }
+html[data-design='amiga'] .uv-reading, html[data-design='amiga'] .weather-reading { border: 2px solid #fff200; border-radius: 0; color: #160b2d; background: #00e5ff; box-shadow: 3px 3px 0 #ff3cac; }
+html[data-design='amiga'] .button-link { border: 2px solid #160b2d; border-radius: 0; box-shadow: 4px 4px 0 #fff200; text-transform: uppercase; }
+html[data-design='amiga'] .site-footer { color: white; background: #662d91; border-top: 4px solid #00e5ff; }
+html[data-design='amiga'] .footer-inner a { color: #fff200; }
+
+@media (max-width: 760px) {
+  .header-tools { width: min(15rem, 55vw); }
+  .font-selector, .design-selector { width: 100%; justify-content: space-between; }
+  .font-selector select, .design-selector select { min-width: 0; width: 10rem; }
+}

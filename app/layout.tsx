@@ -12,6 +12,7 @@ import '@fontsource-variable/fraunces';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import './globals.css';
+import './designs.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://wiewarm.ch'),

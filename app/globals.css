@@ -63,8 +63,9 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .brand-mark svg { position: absolute; width: 1.15rem; }
 .brand-mark svg:first-child { transform: translateY(-.36rem); }
 .brand-mark svg:last-child { transform: translateY(.45rem); }
-.font-selector { display: flex; align-items: center; gap: .55rem; color: var(--foreground); font-size: .78rem; font-weight: 800; }
-.font-selector select { min-width: 10.5rem; height: 2.35rem; padding: 0 2rem 0 .75rem; border: 2px solid var(--foreground); border-radius: .55rem; color: var(--foreground); background: white; font: inherit; cursor: pointer; }
+.header-tools { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: .65rem 1rem; }
+.font-selector, .design-selector { display: flex; align-items: center; gap: .55rem; color: var(--foreground); font-size: .78rem; font-weight: 800; }
+.font-selector select, .design-selector select { min-width: 10.5rem; height: 2.35rem; padding: 0 2rem 0 .75rem; border: 2px solid var(--foreground); border-radius: .55rem; color: var(--foreground); background: white; font: inherit; cursor: pointer; }
 .page-main { flex: 1; padding-block: clamp(2rem, 6vw, 5rem); }
 .home-main { padding-top: .7rem; }
 .eyebrow { display: flex; align-items: center; gap: .5rem; margin: 0 0 .7rem; color: var(--foreground); font-size: .83rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
@@ -147,7 +148,7 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .footer-inner { padding-top: 0; }.footer-inner p { margin: 0; }.footer-inner a { color: white; }
 
 @media (max-width: 760px) {
-  .site-shell { width: min(100% - 1.2rem, 1180px); }.page-main { padding-block: 2rem; }.home-main { padding-top: .35rem; }
+  .site-shell { width: min(100% - 1.2rem, 1180px); }.header-inner { align-items: flex-start; }.header-tools { align-items: flex-end; flex-direction: column; }.page-main { padding-block: 2rem; }.home-main { padding-top: .35rem; }
   .filter-bar { align-items: stretch; flex-direction: column; }.search-field { min-width: 0; }
   .result-bar, .footer-inner { align-items: flex-start; flex-direction: column; }.page-size-form { flex-wrap: wrap; }
   .detail-layout { grid-template-columns: 1fr; }.detail-sidebar { position: static; grid-row: 1; }

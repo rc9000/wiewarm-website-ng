@@ -42,6 +42,15 @@ At its meeting of **07.10.2026**, the local Font Selection Committee selected
 
 This decision may only be changed by a majority vote of the full council.
 
+## Design selection mode
+
+The local design lab is available at
+[http://localhost:3001/?designselect=true](http://localhost:3001/?designselect=true).
+It currently includes **Swiss Lido**, the restored **First Try**, and an
+**Amiga Chiptune** experiment. The selected design persists while browsing.
+
+Use `?fontselect=true&designselect=true` to show both design and font controls.
+
 ## Data source
 
 Application data is fetched exclusively from the documented

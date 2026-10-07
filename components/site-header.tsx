@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Sun, Waves } from 'lucide-react';
+import { DesignSelector } from '@/components/design-selector';
 import { FontSelector } from '@/components/font-selector';
 
 export function SiteHeader() {
@@ -8,6 +9,6 @@ export function SiteHeader() {
       <span className="brand-mark"><Sun aria-hidden="true" /><Waves aria-hidden="true" /></span>
       <span>wiewarm<span>.ch</span></span>
     </Link>
-    <FontSelector />
+    <div className="header-tools"><DesignSelector /><FontSelector /></div>
   </div></header>;
 }
