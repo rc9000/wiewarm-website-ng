@@ -58,7 +58,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
       </TableRow></TableHeader><TableBody>{visible.map((row) => <TableRow key={row.beckenid}>
         <TableCell className="location-cell">{row.ort}</TableCell>
         <TableCell><Link className="pool-link" href={`/bad/${encodeURIComponent(row.badidText)}`}>{row.bad}</Link></TableCell>
-        <TableCell>{row.becken}</TableCell><TableCell><span className="temperature-value">{row.temp.toFixed(1)}°</span></TableCell>
+        <TableCell>{row.becken}</TableCell><TableCell><span className="temperature-value">{row.temp.toFixed(1)} °C</span></TableCell>
         <TableCell><time dateTime={row.date}>{row.datePretty}</time></TableCell><TableCell>{row.plz || '–'}</TableCell>
         <TableCell><span className="canton-pill">{row.kanton || '–'}</span></TableCell>
       </TableRow>)}</TableBody></Table> : <div className="empty-state"><Search aria-hidden="true" /><h2>Keine Treffer</h2><p>Versuche einen anderen Suchbegriff oder lösche die Filter.</p></div>}
