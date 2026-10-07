@@ -6,6 +6,7 @@ const designs = [
   { value: 'swiss-lido', label: 'Swiss Lido' },
   { value: 'first-try', label: 'First Try' },
   { value: 'second-try', label: 'Second Try' },
+  { value: 'summer-swim', label: 'Summer Swim' },
   { value: 'amiga', label: 'Amiga Chiptune' },
   { value: 'macos', label: 'Modern macOS' },
   { value: 'sixties', label: 'Vintage 60s' },

@@ -90,6 +90,76 @@ html[data-design='second-try'] .finder-card { position: relative; }
 html[data-design='second-try'] .finder-card::before { position: absolute; z-index: 2; inset: 0 0 auto; height: .34rem; background: linear-gradient(90deg, oklch(.68 .12 195), oklch(.86 .16 83) 58%, oklch(.72 .15 35)); content: ''; }
 html[data-design='second-try'] .temperature-value { background: linear-gradient(135deg, var(--secondary), color-mix(in oklch, var(--accent) 24%, white)); box-shadow: 0 3px 0 oklch(.68 .12 195 / .16); }
 
+/* Summer Swim: the proposal's ivory, mint, coral and teal visual language,
+ * applied to the established compact header and temperature-list layout. */
+html[data-design='summer-swim'],
+html[data-design='summer-swim'] body {
+  --background: #f7f5ed; --foreground: #153f3b;
+  --card: #ffffff; --card-foreground: #153f3b; --popover: #ffffff; --popover-foreground: #153f3b;
+  --primary: #2e7f79; --primary-foreground: #ffffff; --secondary: #bee9df; --secondary-foreground: #153f3b;
+  --muted: #edf1eb; --muted-foreground: #657672; --accent: #ffed73; --accent-foreground: #153f3b;
+  --destructive: #df675d; --border: #d5dad2; --input: #c8d3ce; --ring: #2e7f79; --radius: 1.15rem;
+}
+
+html[data-design='summer-swim'] .page-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 91% 4.5rem, #ffed73 0 3.9rem, transparent 3.95rem),
+    radial-gradient(circle at 82% 11rem, transparent 0 8.6rem, rgb(77 184 168 / .22) 8.65rem 9.85rem, transparent 9.9rem 13.4rem, rgb(190 233 223 / .68) 13.45rem 16.5rem, transparent 16.55rem),
+    #f7f5ed;
+}
+html[data-design='summer-swim'] .page-frame > * { position: relative; z-index: 1; }
+html[data-design='summer-swim'] .page-frame::before {
+  position: absolute;
+  z-index: 0;
+  top: 7.8rem;
+  right: 5.5%;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: #ef806f;
+  box-shadow: -5.5rem 3.8rem 0 -.28rem #2e7f79, 2.8rem 7.4rem 0 -.42rem #ef806f;
+  content: '';
+  pointer-events: none;
+}
+html[data-design='summer-swim'] .site-header { padding: .95rem 0; border-bottom: 1px solid rgb(21 63 59 / .12); background: rgb(247 245 237 / .84); backdrop-filter: blur(14px); }
+html[data-design='summer-swim'] .brand { color: #153f3b; font-size: 1.4rem; font-weight: 850; letter-spacing: -.045em; }
+html[data-design='summer-swim'] .brand > span:last-child span { color: #2e7f79; }
+html[data-design='summer-swim'] .brand-mark { border: 0; color: #153f3b; background: #ef806f; box-shadow: none; }
+html[data-design='summer-swim'] .font-selector, html[data-design='summer-swim'] .design-selector { color: #526d68; font-weight: 720; }
+html[data-design='summer-swim'] .font-selector select, html[data-design='summer-swim'] .design-selector select { border: 1px solid #c8d3ce; border-radius: .8rem; color: #153f3b; background: #fff; }
+html[data-design='summer-swim'] .finder-card { overflow: hidden; border: 1px solid #d5dad2; border-radius: 1.45rem; background: #fff; box-shadow: 0 24px 60px rgb(21 63 59 / .11); }
+html[data-design='summer-swim'] .filter-bar { border-bottom: 1px solid #a8d7cc; background: #bee9df; }
+html[data-design='summer-swim'] .search-field svg { color: #2e7f79; }
+html[data-design='summer-swim'] .search-field input { border: 1px solid #9fc8be; border-radius: .8rem; color: #153f3b; background: #fff; box-shadow: 0 3px 12px rgb(21 63 59 / .06); }
+html[data-design='summer-swim'] .temperature-table { border-top: 0; }
+html[data-design='summer-swim'] .temperature-table th { color: #fff; background: #2e7f79; }
+html[data-design='summer-swim'] body .temperature-table tbody tr { background: #fff; }
+html[data-design='summer-swim'] body .temperature-table tbody tr:nth-child(even) { background: #f3f7f3; }
+html[data-design='summer-swim'] .temperature-table td, html[data-design='summer-swim'] .temperature-table tr { border-color: #dde3dc; }
+html[data-design='summer-swim'] .sort-link { color: #fff; }
+html[data-design='summer-swim'] .pool-link, html[data-design='summer-swim'] .detail-temp, html[data-design='summer-swim'] .contact-links a { color: #236f69; font-weight: 750; }
+html[data-design='summer-swim'] .temperature-value { border: 0; border-radius: .7rem; color: #fff; background: #2e7f79; box-shadow: .2rem .2rem 0 #bee9df; }
+html[data-design='summer-swim'] .canton-pill { border-radius: 999px; color: #153f3b; background: #ef806f; font-weight: 800; }
+html[data-design='summer-swim'] .table-pagination { border-top: 1px solid #d5dad2; background: #fafaf6; }
+html[data-design='summer-swim'] .back-link { color: #526d68; font-weight: 650; }
+html[data-design='summer-swim'] .eyebrow, html[data-design='summer-swim'] .section-heading p { color: #2e7f79; }
+html[data-design='summer-swim'] .detail-card, html[data-design='summer-swim'] .weather-card, html[data-design='summer-swim'] .error-card { border: 1px solid #d5dad2; border-radius: 1.45rem; background: #fff; box-shadow: 0 18px 48px rgb(21 63 59 / .09); }
+html[data-design='summer-swim'] .contact-card { border: 0; border-radius: 1.45rem; color: #fff; background: #2e7f79; box-shadow: .55rem .55rem 0 #bee9df; }
+html[data-design='summer-swim'] .contact-card .section-heading p, html[data-design='summer-swim'] .contact-card .section-heading h2, html[data-design='summer-swim'] .contact-card .contact-links a { color: #fff; }
+html[data-design='summer-swim'] .contact-card .section-icon { color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .contact-card .button-link { color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .section-icon { border: 0; border-radius: 50%; color: #153f3b; background: #ef806f; }
+html[data-design='summer-swim'] .section-icon.sunny { color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .basin-table th { color: #153f3b; background: #bee9df; }
+html[data-design='summer-swim'] .notice-list article { border-left: .35rem solid #ef806f; border-radius: .8rem; background: #fff8dc; }
+html[data-design='summer-swim'] .uv-reading, html[data-design='summer-swim'] .weather-reading { border: 0; border-radius: 1rem; color: #153f3b; background: #ffed73; }
+html[data-design='summer-swim'] .button-link { border-radius: .8rem; background: #2e7f79; box-shadow: none; }
+html[data-design='summer-swim'] .site-footer { color: #526d68; background: #f7f5ed; border-top: 1px solid #d5dad2; }
+html[data-design='summer-swim'] .footer-inner a { color: #236f69; }
+
 html[data-design='amiga'],
 html[data-design='amiga'] body {
   --background: #160b2d; --foreground: #f8f5ff;
