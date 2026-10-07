@@ -49,10 +49,10 @@
 
 /* Second Try keeps First Try intact, minus its decorative top-right circle. */
 html[data-design='second-try'] .page-frame { background: linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
-html[data-design='second-try'] .brand-mark { width: 4.15rem; border-radius: 999px; }
-html[data-design='second-try'] .brand-thermometer { display: block; width: 1.15rem; height: 1.8rem; transform: translateX(-1rem) rotate(-6deg); }
-html[data-design='second-try'] .brand-sun { transform: translate(.72rem, -.36rem); }
-html[data-design='second-try'] .brand-waves { transform: translate(.72rem, .45rem); }
+html[data-design='second-try'] .brand-mark { width: 3.25rem; height: 3.25rem; border-radius: 50%; }
+html[data-design='second-try'] .brand-thermometer { display: block; width: .95rem; height: 1.5rem; transform: translateX(-.58rem) rotate(-6deg); }
+html[data-design='second-try'] .brand-sun { transform: translate(.42rem, -.36rem); }
+html[data-design='second-try'] .brand-waves { transform: translate(.42rem, .45rem); }
 
 html[data-design='amiga'],
 html[data-design='amiga'] body {
