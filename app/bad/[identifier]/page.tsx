@@ -6,6 +6,7 @@ import { ArrowLeft, Clock3, ExternalLink, Images, Info, Mail, MapPin, Phone, Sun
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { formatTemperature } from '@/lib/format-temperature';
 import { getSwimmingLocation, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
 
 type RouteParams = { identifier: string };
@@ -64,7 +65,7 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
       <div><p className="eyebrow"><Waves aria-hidden="true" /> {location.canton || 'Schweiz'}</p>
         <h1>{location.name}</h1><p>{location.postalCode} {location.city}</p></div>
       {location.basins[0]?.temp !== null && location.basins[0]?.temp !== undefined ? <div className="hero-temperature">
-        <span>{location.basins[0].temp.toFixed(1)}°</span><small>{location.basins[0].name}</small>
+        <span>{formatTemperature(location.basins[0].temp)}</span><small>{location.basins[0].name}</small>
       </div> : null}
     </header>
 
@@ -74,7 +75,7 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
           <div className="section-heading"><div className="section-icon"><Waves aria-hidden="true" /></div><div><p>Aktuell</p><h2 id="basins-heading">Becken & Temperaturen</h2></div></div>
           {location.basins.length ? <Table className="basin-table"><TableHeader><TableRow><TableHead>Becken</TableHead><TableHead>Temperatur</TableHead><TableHead>Status</TableHead><TableHead>Aktualisiert</TableHead></TableRow></TableHeader>
             <TableBody>{location.basins.map((basin) => <TableRow key={basin.beckenid}><TableCell><strong>{basin.name}</strong><small>{basin.type}</small></TableCell>
-              <TableCell>{basin.temp === null ? '–' : <span className="detail-temp">{basin.temp.toFixed(1)}°C</span>}</TableCell>
+              <TableCell><span className="detail-temp">{formatTemperature(basin.temp)}</span></TableCell>
               <TableCell><Badge variant={basin.status.toLocaleLowerCase('de-CH').includes('geöffnet') ? 'default' : 'secondary'}>{basin.status || 'Unbekannt'}</Badge></TableCell>
               <TableCell><time dateTime={basin.date}>{basin.datePretty || '–'}</time>{isStale(basin) ? <small className="stale-label">Älterer Messwert</small> : null}</TableCell>
             </TableRow>)}</TableBody></Table> : <p className="muted-copy">Keine Beckenangaben verfügbar.</p>}
@@ -107,7 +108,7 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
         </section> : null}
         {(uvIsRecent || recentWeather.length) ? <section className="weather-card"><p className="eyebrow"><Sun aria-hidden="true" /> Wetterdaten</p><h2>Sonne & Wasser</h2>
           {uvIsRecent && location.uvValue !== null ? <div className="uv-reading"><span>UV {location.uvValue}</span><small>{location.uvDatePretty}{location.uvStationName ? ` · ${location.uvStationName}` : ''}</small></div> : null}
-          {recentWeather.map((entry) => <div className="weather-reading" key={entry.date}><span>{entry.temperature === null ? '–' : `${entry.temperature.toFixed(1)}°C`}</span><small>{entry.datePretty}</small></div>)}
+          {recentWeather.map((entry) => <div className="weather-reading" key={entry.date}><span>{formatTemperature(entry.temperature)}</span><small>{entry.datePretty}</small></div>)}
         </section> : null}
       </aside>
     </div>

@@ -1,4 +1,5 @@
 import type { CurrentTemperature } from '@/lib/wiewarm-api';
+import { formatTemperature } from '@/lib/format-temperature';
 
 export const sortableColumns = ['ort', 'bad', 'becken', 'temp', 'date', 'plz', 'kanton'] as const;
 export type SortColumn = (typeof sortableColumns)[number];
@@ -32,7 +33,7 @@ const includes = (value: string, query: string) => value.toLocaleLowerCase('de-C
 
 export function filterAndSortTemperatures(rows: CurrentTemperature[], query: TemperatureQuery): CurrentTemperature[] {
   const filtered = rows.filter((row) => {
-    const searchable = `${row.ort} ${row.bad} ${row.becken} ${row.temp} ${row.temp.toFixed(1)} ${row.date} ${row.datePretty} ${row.plz} ${row.kanton}`;
+    const searchable = `${row.ort} ${row.bad} ${row.becken} ${row.temp} ${formatTemperature(row.temp)} ${row.date} ${row.datePretty} ${row.plz} ${row.kanton}`;
     return (!query.q || includes(searchable, query.q)) && (!query.ort || includes(row.ort, query.ort)) &&
       (!query.bad || includes(row.bad, query.bad)) && (!query.becken || includes(row.becken, query.becken)) &&
       (!query.plz || includes(row.plz, query.plz)) && (!query.kanton || row.kanton === query.kanton);
