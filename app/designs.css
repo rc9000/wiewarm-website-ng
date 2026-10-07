@@ -147,8 +147,9 @@ html[data-design='summer-swim'] .table-pagination { border-top: 1px solid #d5dad
 html[data-design='summer-swim'] .back-link { color: #526d68; font-weight: 650; }
 html[data-design='summer-swim'] .eyebrow, html[data-design='summer-swim'] .section-heading p { color: #2e7f79; }
 html[data-design='summer-swim'] .detail-card, html[data-design='summer-swim'] .weather-card, html[data-design='summer-swim'] .error-card { border: 1px solid #d5dad2; border-radius: 1.45rem; background: #fff; box-shadow: 0 18px 48px rgb(21 63 59 / .09); }
-html[data-design='summer-swim'] .contact-card { border: 0; border-radius: 1.45rem; color: #fff; background: #2e7f79; box-shadow: .55rem .55rem 0 #bee9df; }
+html[data-design='summer-swim'] .contact-card { border: 0; border-radius: 1.45rem; color: #fff; background: #2e7f79; box-shadow: .75rem .85rem 0 #bee9df; transform: rotate(1.15deg); transform-origin: 50% 35%; }
 html[data-design='summer-swim'] .contact-card .section-heading p, html[data-design='summer-swim'] .contact-card .section-heading h2, html[data-design='summer-swim'] .contact-card .contact-links a { color: #fff; }
+html[data-design='summer-swim'] .contact-card address span:last-child { margin-top: .2rem; font: 820 clamp(1.8rem, 3vw, 2.45rem)/1 var(--font-heading-face); letter-spacing: -.055em; }
 html[data-design='summer-swim'] .contact-card .section-icon { color: #153f3b; background: #ffed73; }
 html[data-design='summer-swim'] .contact-card .button-link { color: #153f3b; background: #ffed73; }
 html[data-design='summer-swim'] .section-icon { border: 0; border-radius: 50%; color: #153f3b; background: #ef806f; }
@@ -374,4 +375,5 @@ html[data-design='goth'] .footer-inner a { color: #b59b62; }
   .header-tools { width: min(15rem, 55vw); }
   .font-selector, .design-selector { width: 100%; justify-content: space-between; }
   .font-selector select, .design-selector select { min-width: 0; width: 10rem; }
+  html[data-design='summer-swim'] .contact-card { transform: rotate(.55deg); }
 }
