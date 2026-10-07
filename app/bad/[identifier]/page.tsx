@@ -63,10 +63,7 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
   return <main className="site-shell detail-main">
     <Button variant="ghost" nativeButton={false} render={<Link href="/" />} className="back-link"><ArrowLeft aria-hidden="true" /> Alle Temperaturen</Button>
 
-    <header className="detail-hero">
-      <div><p className="eyebrow"><Waves aria-hidden="true" /> {location.canton || 'Schweiz'}</p>
-        <h1>{location.name}</h1><p>{location.postalCode} {location.city}</p></div>
-    </header>
+    <header className="detail-hero"><h1>{location.name}</h1></header>
 
     <div className="detail-layout">
       <div className="detail-primary">

@@ -103,9 +103,8 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .button-link:hover { filter: brightness(.94); }.button-link:active { transform: translateY(1px); }.button-link svg { width: 1rem; }
 .detail-main { flex: 1; padding-block: 1.5rem 5rem; }
 .back-link { margin-bottom: 2rem; color: var(--muted-foreground); }
-.detail-hero { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
-.detail-hero h1 { margin: 0; font-size: clamp(2.7rem, 7vw, 5.7rem); line-height: .92; letter-spacing: -.07em; }
-.detail-hero > div:first-child > p:last-child { margin: .75rem 0 0; color: var(--muted-foreground); font-size: 1.12rem; font-weight: 620; }
+.detail-hero { margin-bottom: 1.5rem; }
+.detail-hero h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; letter-spacing: -.055em; }
 .detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 1.25rem; align-items: start; }
 .detail-primary, .detail-sidebar { display: grid; gap: 1.25rem; }
 .detail-sidebar { position: sticky; top: 1rem; }
@@ -151,7 +150,7 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
   .site-shell { width: min(100% - 1.2rem, 1180px); }.page-main { padding-block: 2rem; }.home-main { padding-top: .35rem; }
   .filter-bar { align-items: stretch; flex-direction: column; }.search-field { min-width: 0; }
   .result-bar, .footer-inner { align-items: flex-start; flex-direction: column; }.page-size-form { flex-wrap: wrap; }
-  .detail-hero { align-items: start; flex-direction: column; }.detail-layout { grid-template-columns: 1fr; }.detail-sidebar { position: static; grid-row: 1; }
+  .detail-layout { grid-template-columns: 1fr; }.detail-sidebar { position: static; grid-row: 1; }
   .info-grid { grid-template-columns: 1fr; }.info-wide { grid-column: auto; }
   .image-gallery { grid-template-columns: 1fr 1fr; }.image-gallery a.gallery-featured { grid-column: 1 / -1; min-height: 17rem; }.notice-list article { grid-template-columns: 1fr; gap: .35rem; }
 }
