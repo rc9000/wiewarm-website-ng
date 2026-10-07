@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatTemperature } from '@/lib/format-temperature';
-import { getSwimmingLocation, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
+import { getSwimmingLocation, normalizeRouteIdentifier, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
 
 type RouteParams = { identifier: string };
 
@@ -28,13 +28,14 @@ function isStale(basin: Basin): boolean {
 
 export async function generateMetadata({ params }: { params: Promise<RouteParams> }): Promise<Metadata> {
   const { identifier } = await params;
+  const normalizedIdentifier = normalizeRouteIdentifier(identifier);
   try {
-    const location = await getSwimmingLocation(identifier);
+    const location = await getSwimmingLocation(normalizedIdentifier);
     const title = `${location.name}, ${location.city}`;
     const description = `Wassertemperaturen, Öffnungszeiten und Informationen für ${location.name} in ${location.city}.`;
     const image = location.images[0]?.original;
     return {
-      title, description, alternates: { canonical: `/bad/${encodeURIComponent(identifier)}` },
+      title, description, alternates: { canonical: `/bad/${encodeURIComponent(normalizedIdentifier)}` },
       openGraph: { title, description, images: image ? [{ url: image }] : [] },
       twitter: { card: image ? 'summary_large_image' : 'summary', title, description, images: image ? [image] : [] },
     };
@@ -45,12 +46,13 @@ export async function generateMetadata({ params }: { params: Promise<RouteParams
 
 export default async function SwimmingLocationPage({ params }: { params: Promise<RouteParams> }) {
   const { identifier } = await params;
+  const normalizedIdentifier = normalizeRouteIdentifier(identifier);
   let location;
   try {
-    location = await getSwimmingLocation(identifier);
+    location = await getSwimmingLocation(normalizedIdentifier);
   } catch (error) {
     if (error instanceof WiewarmApiError && error.status === 404) notFound();
-    if (error instanceof WiewarmApiError && error.status === 500 && !(await swimmingLocationExists(identifier))) notFound();
+    if (error instanceof WiewarmApiError && error.status === 500 && !(await swimmingLocationExists(normalizedIdentifier))) notFound();
     throw error;
   }
 

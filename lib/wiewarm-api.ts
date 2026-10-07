@@ -111,6 +111,14 @@ export function finiteNumber(value: unknown): number | null {
   return Number.isFinite(number) ? number : null;
 }
 
+export function normalizeRouteIdentifier(identifier: string): string {
+  try {
+    return decodeURIComponent(identifier);
+  } catch {
+    return identifier;
+  }
+}
+
 function normalizeCurrentTemperature(value: unknown): CurrentTemperature | null {
   if (!isRecord(value)) return null;
   const badid = text(value.badid);
@@ -229,7 +237,8 @@ function normalizeWeather(value: unknown): WeatherEntry | null {
 }
 
 export async function getSwimmingLocation(identifier: string): Promise<SwimmingLocationDetail> {
-  const payload = await getJson(`/bad.json/${encodeURIComponent(identifier)}`);
+  const normalizedIdentifier = normalizeRouteIdentifier(identifier);
+  const payload = await getJson(`/bad.json/${encodeURIComponent(normalizedIdentifier)}`);
   if (!isRecord(payload) || !text(payload.badid) || !text(payload.badname) || !text(payload.ort)) {
     throw new WiewarmApiError('Unexpected swimming location response');
   }
@@ -261,6 +270,7 @@ export async function getSwimmingLocationReferences(): Promise<SwimmingLocationR
 }
 
 export async function swimmingLocationExists(identifier: string): Promise<boolean> {
+  const normalizedIdentifier = normalizeRouteIdentifier(identifier);
   const references = await getSwimmingLocationReferences();
-  return references.some((reference) => reference.badid === identifier || reference.badidText === identifier);
+  return references.some((reference) => reference.badid === normalizedIdentifier || reference.badidText === normalizedIdentifier);
 }

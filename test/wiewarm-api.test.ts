@@ -30,6 +30,21 @@ describe('wiewarm API normalization', () => {
     expect(result.images[0].original).toBe('https://www.wiewarm.ch/img/baeder-orig/199/1.jpg');
   });
 
+  it('decodes already-encoded route ids before calling the API', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(response({
+      badid: '129', badname: 'Parkbad', ort: 'Münsingen', kanton: 'BE', plz: '3110',
+      becken: {}, bilder: [], infos: [], wetter: [],
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await getSwimmingLocation('Parkbad_M%C3%BCnsingen');
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('/bad.json/Parkbad_M%C3%BCnsingen'),
+      expect.any(Object),
+    );
+  });
+
   it('exposes upstream status codes', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(response({ error: 'missing' }, 404)));
     await expect(getSwimmingLocation('missing')).rejects.toMatchObject({ status: 404 });
