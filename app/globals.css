@@ -61,8 +61,9 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .brand > span:last-child span { color: var(--primary); }
 .brand-mark { position: relative; display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border: 2px solid var(--foreground); border-radius: 50%; color: var(--foreground); background: var(--accent); box-shadow: 4px 4px 0 #ff654f; }
 .brand-mark svg { position: absolute; width: 1.15rem; }
-.brand-mark svg:first-child { transform: translateY(-.36rem); }
-.brand-mark svg:last-child { transform: translateY(.45rem); }
+.brand-thermometer { display: none; }
+.brand-sun { transform: translateY(-.36rem); }
+.brand-waves { transform: translateY(.45rem); }
 .header-tools { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: .65rem 1rem; }
 .font-selector, .design-selector { display: flex; align-items: center; gap: .55rem; color: var(--foreground); font-size: .78rem; font-weight: 800; }
 .font-selector select, .design-selector select { min-width: 10.5rem; height: 2.35rem; padding: 0 2rem 0 .75rem; border: 2px solid var(--foreground); border-radius: .55rem; color: var(--foreground); background: white; font: inherit; cursor: pointer; }
