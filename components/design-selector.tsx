@@ -5,6 +5,7 @@ import { useEffect, useState, useSyncExternalStore } from 'react';
 const designs = [
   { value: 'swiss-lido', label: 'Swiss Lido' },
   { value: 'first-try', label: 'First Try' },
+  { value: 'second-try', label: 'Second Try' },
   { value: 'amiga', label: 'Amiga Chiptune' },
   { value: 'macos', label: 'Modern macOS' },
   { value: 'sixties', label: 'Vintage 60s' },

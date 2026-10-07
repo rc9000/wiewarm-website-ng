@@ -3,8 +3,8 @@
  * application behavior. Swiss Lido is the default defined in globals.css.
  */
 
-html[data-design='first-try'],
-html[data-design='first-try'] body {
+:is(html[data-design='first-try'], html[data-design='second-try']),
+:is(html[data-design='first-try'], html[data-design='second-try']) body {
   --background: oklch(.975 .016 205); --foreground: oklch(.24 .055 230);
   --card: oklch(1 0 0); --card-foreground: var(--foreground); --popover: oklch(1 0 0); --popover-foreground: var(--foreground);
   --primary: oklch(.55 .135 216); --primary-foreground: oklch(1 0 0); --secondary: oklch(.92 .058 190); --secondary-foreground: oklch(.27 .07 215);
@@ -12,40 +12,43 @@ html[data-design='first-try'] body {
   --destructive: oklch(.58 .22 28); --border: oklch(.86 .04 210); --input: oklch(.85 .04 210); --ring: oklch(.62 .14 210); --radius: .8rem;
 }
 
-html[data-design='first-try'] .page-frame { background: radial-gradient(circle at 86% 5%, color-mix(in oklch, var(--accent) 28%, transparent) 0 8rem, transparent 8.1rem), linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
-html[data-design='first-try'] .site-header { padding: 1rem 0; border-bottom: 0; }
-html[data-design='first-try'] .brand { color: oklch(.28 .09 222); font-weight: 800; font-size: 1.4rem; letter-spacing: -.04em; }
-html[data-design='first-try'] .brand > span:last-child span { color: var(--primary); }
-html[data-design='first-try'] .brand-mark { border: 0; border-radius: 50%; color: oklch(.38 .12 214); background: var(--accent); box-shadow: 0 7px 20px oklch(.45 .13 211 / .16); }
-html[data-design='first-try'] .font-selector, html[data-design='first-try'] .design-selector { color: var(--muted-foreground); font-weight: 750; }
-html[data-design='first-try'] .font-selector select, html[data-design='first-try'] .design-selector select { border: 1px solid var(--border); border-radius: .65rem; }
-html[data-design='first-try'] .eyebrow { color: oklch(.39 .105 210); font-weight: 800; }
-html[data-design='first-try'] .finder-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.4rem; background: color-mix(in oklch, var(--card) 96%, transparent); box-shadow: 0 24px 70px oklch(.3 .08 220 / .12); }
-html[data-design='first-try'] .filter-bar { background: oklch(.985 .008 200); border-bottom: 1px solid var(--border); }
-html[data-design='first-try'] .search-field svg { color: var(--muted-foreground); }
-html[data-design='first-try'] .search-field input { border: 1px solid var(--input); }
-html[data-design='first-try'] .temperature-table { border-top: 1px solid var(--border); }
-html[data-design='first-try'] .temperature-table th { color: var(--foreground); background: oklch(.95 .025 202); }
-html[data-design='first-try'] .temperature-table tbody tr:nth-child(even) { background: oklch(.98 .012 205); }
-html[data-design='first-try'] .sort-link { color: var(--muted-foreground); }
-html[data-design='first-try'] .pool-link { color: oklch(.38 .12 215); font-weight: 680; }
-html[data-design='first-try'] .temperature-value { border: 0; border-radius: 999px; color: oklch(.29 .08 214); background: var(--secondary); font-weight: 800; }
-html[data-design='first-try'] .canton-pill { border-radius: .45rem; background: oklch(.93 .04 210); font-weight: 800; }
-html[data-design='first-try'] .table-pagination { border-top: 1px solid var(--border); }
-html[data-design='first-try'] .error-card { border: 0; border-radius: 1.5rem; box-shadow: 0 20px 60px oklch(.3 .08 220 / .12); }
-html[data-design='first-try'] .back-link { color: var(--muted-foreground); font-weight: 500; }
-html[data-design='first-try'] .detail-card, html[data-design='first-try'] .contact-card, html[data-design='first-try'] .weather-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.3rem; box-shadow: 0 16px 50px oklch(.3 .08 220 / .09); }
-html[data-design='first-try'] .section-icon { border: 0; border-radius: .85rem; background: var(--secondary); color: oklch(.36 .11 215); }
-html[data-design='first-try'] .section-icon.sunny { background: color-mix(in oklch, var(--accent) 60%, white); color: var(--accent-foreground); }
-html[data-design='first-try'] .basin-table th { color: var(--foreground); background: var(--muted); }
-html[data-design='first-try'] .detail-temp { color: oklch(.36 .12 214); font-weight: 800; }
-html[data-design='first-try'] .stale-label { color: oklch(.55 .14 47) !important; font-weight: 700; }
-html[data-design='first-try'] .notice-list article { border-left: 0; border-radius: .9rem; background: color-mix(in oklch, var(--accent) 16%, white); }
-html[data-design='first-try'] .contact-links a { color: oklch(.38 .115 214); }
-html[data-design='first-try'] .uv-reading, html[data-design='first-try'] .weather-reading { border: 0; border-radius: 1rem; background: color-mix(in oklch, var(--accent) 48%, white); }
-html[data-design='first-try'] .site-footer { margin-top: 0; color: var(--muted-foreground); background: transparent; }
-html[data-design='first-try'] .footer-inner { border-top: 1px solid var(--border); padding-top: 1.3rem; }
-html[data-design='first-try'] .footer-inner a { color: inherit; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .page-frame { background: radial-gradient(circle at 86% 5%, color-mix(in oklch, var(--accent) 28%, transparent) 0 8rem, transparent 8.1rem), linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .site-header { padding: 1rem 0; border-bottom: 0; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .brand { color: oklch(.28 .09 222); font-weight: 800; font-size: 1.4rem; letter-spacing: -.04em; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .brand > span:last-child span { color: var(--primary); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .brand-mark { border: 0; border-radius: 50%; color: oklch(.38 .12 214); background: var(--accent); box-shadow: 0 7px 20px oklch(.45 .13 211 / .16); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .font-selector, :is(html[data-design='first-try'], html[data-design='second-try']) .design-selector { color: var(--muted-foreground); font-weight: 750; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .font-selector select, :is(html[data-design='first-try'], html[data-design='second-try']) .design-selector select { border: 1px solid var(--border); border-radius: .65rem; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .eyebrow { color: oklch(.39 .105 210); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .finder-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.4rem; background: color-mix(in oklch, var(--card) 96%, transparent); box-shadow: 0 24px 70px oklch(.3 .08 220 / .12); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .filter-bar { background: oklch(.985 .008 200); border-bottom: 1px solid var(--border); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .search-field svg { color: var(--muted-foreground); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .search-field input { border: 1px solid var(--input); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-table { border-top: 1px solid var(--border); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-table th { color: var(--foreground); background: oklch(.95 .025 202); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-table tbody tr:nth-child(even) { background: oklch(.98 .012 205); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .sort-link { color: var(--muted-foreground); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .pool-link { color: oklch(.38 .12 215); font-weight: 680; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .temperature-value { border: 0; border-radius: 999px; color: oklch(.29 .08 214); background: var(--secondary); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .canton-pill { border-radius: .45rem; background: oklch(.93 .04 210); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .table-pagination { border-top: 1px solid var(--border); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .error-card { border: 0; border-radius: 1.5rem; box-shadow: 0 20px 60px oklch(.3 .08 220 / .12); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .back-link { color: var(--muted-foreground); font-weight: 500; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .detail-card, :is(html[data-design='first-try'], html[data-design='second-try']) .contact-card, :is(html[data-design='first-try'], html[data-design='second-try']) .weather-card { border: 1px solid color-mix(in oklch, var(--border) 85%, white); border-radius: 1.3rem; box-shadow: 0 16px 50px oklch(.3 .08 220 / .09); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .section-icon { border: 0; border-radius: .85rem; background: var(--secondary); color: oklch(.36 .11 215); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .section-icon.sunny { background: color-mix(in oklch, var(--accent) 60%, white); color: var(--accent-foreground); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .basin-table th { color: var(--foreground); background: var(--muted); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .detail-temp { color: oklch(.36 .12 214); font-weight: 800; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .stale-label { color: oklch(.55 .14 47) !important; font-weight: 700; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .notice-list article { border-left: 0; border-radius: .9rem; background: color-mix(in oklch, var(--accent) 16%, white); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .contact-links a { color: oklch(.38 .115 214); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .uv-reading, :is(html[data-design='first-try'], html[data-design='second-try']) .weather-reading { border: 0; border-radius: 1rem; background: color-mix(in oklch, var(--accent) 48%, white); }
+:is(html[data-design='first-try'], html[data-design='second-try']) .site-footer { margin-top: 0; color: var(--muted-foreground); background: transparent; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .footer-inner { border-top: 1px solid var(--border); padding-top: 1.3rem; }
+:is(html[data-design='first-try'], html[data-design='second-try']) .footer-inner a { color: inherit; }
+
+/* Second Try keeps First Try intact, minus its decorative top-right circle. */
+html[data-design='second-try'] .page-frame { background: linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
 
 html[data-design='amiga'],
 html[data-design='amiga'] body {
