@@ -47,8 +47,14 @@
 :is(html[data-design='first-try'], html[data-design='second-try']) .footer-inner { border-top: 1px solid var(--border); padding-top: 1.3rem; }
 :is(html[data-design='first-try'], html[data-design='second-try']) .footer-inner a { color: inherit; }
 
-/* Second Try keeps First Try intact, minus its decorative top-right circle. */
-html[data-design='second-try'] .page-frame { background: linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem); }
+/* Second Try replaces the flat circle with a light summer-orbit motif. */
+html[data-design='second-try'] .page-frame {
+  background:
+    radial-gradient(circle at 89% 3.5rem, transparent 0 3.9rem, oklch(.68 .105 198 / .2) 3.95rem 4.16rem, transparent 4.22rem 5.7rem, oklch(.86 .15 85 / .28) 5.76rem 6.12rem, transparent 6.18rem),
+    radial-gradient(circle at 78% 1.7rem, oklch(.7 .12 195 / .22) 0 .68rem, transparent .73rem),
+    radial-gradient(circle at 97% 9.2rem, oklch(.84 .16 78 / .34) 0 .52rem, transparent .58rem),
+    linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem);
+}
 
 html[data-design='amiga'],
 html[data-design='amiga'] body {
