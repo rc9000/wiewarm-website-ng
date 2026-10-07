@@ -9,6 +9,7 @@ const designs = [
   { value: 'macos', label: 'Modern macOS' },
   { value: 'sixties', label: 'Vintage 60s' },
   { value: 'ms-dos', label: 'MS-DOS' },
+  { value: 'goth', label: 'Goth' },
 ] as const;
 
 type DesignValue = (typeof designs)[number]['value'];

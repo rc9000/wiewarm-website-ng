@@ -210,6 +210,53 @@ html[data-design='ms-dos'] .button-link { border: 2px solid #ffffff; border-radi
 html[data-design='ms-dos'] .site-footer { color: #c0c0c0; background: #000000; border-top: 2px solid #ffffff; font-family: inherit; }
 html[data-design='ms-dos'] .footer-inner a { color: #00ffff; }
 
+/* Goth: nocturnal cathedral tones, silver type and pointed ornament. */
+html[data-design='goth'],
+html[data-design='goth'] body {
+  --background: #09070c; --foreground: #eee9f1;
+  --card: #15101a; --card-foreground: #eee9f1; --popover: #15101a; --popover-foreground: #eee9f1;
+  --primary: #a51d4c; --primary-foreground: #fff6fa; --secondary: #392344; --secondary-foreground: #f3e9f5;
+  --muted: #211827; --muted-foreground: #b9aabd; --accent: #b59b62; --accent-foreground: #100c13;
+  --destructive: #c83955; --border: #79677f; --input: #79677f; --ring: #b59b62; --radius: 0;
+}
+
+html[data-design='goth'] .page-frame { background: radial-gradient(ellipse at 50% -8%, rgb(123 29 70 / .48), transparent 34rem), radial-gradient(ellipse at 90% 55%, rgb(55 34 74 / .32), transparent 30rem), repeating-linear-gradient(90deg, transparent 0 4.95rem, rgb(255 255 255 / .018) 5rem), #09070c; }
+html[data-design='goth'] .site-header { border-bottom: 1px solid #b59b62; background: rgb(9 7 12 / .92); box-shadow: 0 .35rem 0 #25142c, 0 .42rem 0 #79677f; }
+html[data-design='goth'] .brand { color: #eee9f1; font-size: 1.45rem; font-weight: 800; letter-spacing: .035em; text-transform: uppercase; }
+html[data-design='goth'] .brand > span:last-child span { color: #b59b62; }
+html[data-design='goth'] .brand-mark { border: 1px solid #b59b62; border-radius: 50% 50% 4% 4%; color: #eee9f1; background: #5c1535; box-shadow: 0 0 0 3px #09070c, 0 0 0 4px #79677f; }
+html[data-design='goth'] .font-selector, html[data-design='goth'] .design-selector { color: #b9aabd; letter-spacing: .08em; text-transform: uppercase; }
+html[data-design='goth'] .font-selector select, html[data-design='goth'] .design-selector select { border: 1px solid #79677f; border-radius: 0; color: #eee9f1; background: #15101a; box-shadow: inset 0 0 0 2px #09070c, 0 0 0 1px #392344; }
+html[data-design='goth'] .finder-card { position: relative; overflow: hidden; border: 1px solid #b59b62; border-radius: 0; background: #15101a; box-shadow: 0 0 0 5px #09070c, 0 0 0 6px #55445b, 0 1.5rem 4rem rgb(0 0 0 / .65); }
+html[data-design='goth'] .finder-card::before { display: block; height: .55rem; background: repeating-linear-gradient(135deg, #5c1535 0 .7rem, #1e1424 .7rem 1.4rem); border-bottom: 1px solid #b59b62; content: ''; }
+html[data-design='goth'] .filter-bar { border-bottom: 1px solid #79677f; background: #100c13; }
+html[data-design='goth'] .search-field svg { color: #b59b62; }
+html[data-design='goth'] .search-field input { border: 1px solid #79677f; border-radius: 0; color: #eee9f1; background: #09070c; box-shadow: inset 0 0 1.2rem rgb(92 21 53 / .22); }
+html[data-design='goth'] .search-field input::placeholder { color: #9a899f; }
+html[data-design='goth'] .result-bar { color: #d6cbd9; }
+html[data-design='goth'] .temperature-table { border-top: 1px solid #b59b62; }
+html[data-design='goth'] .temperature-table th { color: #eee9f1; background: #392344; border-bottom-color: #b59b62; }
+html[data-design='goth'] body .temperature-table tbody tr { color: #eee9f1; background: #15101a; }
+html[data-design='goth'] body .temperature-table tbody tr:nth-child(even) { background: #211827; }
+html[data-design='goth'] .temperature-table td, html[data-design='goth'] .temperature-table tr { border-color: #433649; }
+html[data-design='goth'] .sort-link { color: #eee9f1; letter-spacing: .1em; }
+html[data-design='goth'] .pool-link, html[data-design='goth'] .detail-temp, html[data-design='goth'] .contact-links a { color: #d7688f; text-decoration-color: #b59b62; }
+html[data-design='goth'] .temperature-value { border: 1px solid #b59b62; border-radius: 0; color: #fff6fa; background: #5c1535; box-shadow: inset 0 0 0 2px #24101a; }
+html[data-design='goth'] .canton-pill { border: 1px solid #79677f; border-radius: 0; color: #09070c; background: #b9aabd; }
+html[data-design='goth'] .table-pagination { border-top: 1px solid #b59b62; }
+html[data-design='goth'] .back-link { color: #b59b62; letter-spacing: .08em; text-transform: uppercase; }
+html[data-design='goth'] .detail-card, html[data-design='goth'] .contact-card, html[data-design='goth'] .weather-card, html[data-design='goth'] .error-card { position: relative; border: 1px solid #b59b62; border-radius: 0; color: #eee9f1; background: linear-gradient(145deg, #19121e, #100c13); box-shadow: 0 0 0 4px #09070c, 0 0 0 5px #55445b, .7rem .8rem 0 rgb(92 21 53 / .45); }
+html[data-design='goth'] .section-heading p, html[data-design='goth'] .eyebrow { color: #b59b62; letter-spacing: .13em; }
+html[data-design='goth'] .section-icon { border: 1px solid #b59b62; border-radius: 50% 50% 0 0; color: #eee9f1; background: #5c1535; box-shadow: inset 0 0 0 3px #24101a; }
+html[data-design='goth'] .section-icon.sunny { color: #09070c; background: #b59b62; }
+html[data-design='goth'] .basin-table th { color: #eee9f1; background: #392344; }
+html[data-design='goth'] .notice-list article { border-left: .35rem double #b59b62; border-radius: 0; background: #211827; }
+html[data-design='goth'] .preformatted { color: #eee9f1; }
+html[data-design='goth'] .uv-reading, html[data-design='goth'] .weather-reading { border: 1px solid #79677f; border-radius: 0; color: #eee9f1; background: #392344; }
+html[data-design='goth'] .button-link { border: 1px solid #b59b62; border-radius: 0; color: #fff6fa; background: #5c1535; box-shadow: inset 0 0 0 3px #24101a, .3rem .3rem 0 #09070c; letter-spacing: .06em; text-transform: uppercase; }
+html[data-design='goth'] .site-footer { color: #b9aabd; background: #09070c; border-top: 1px solid #55445b; }
+html[data-design='goth'] .footer-inner a { color: #b59b62; }
+
 @media (max-width: 760px) {
   .header-tools { width: min(15rem, 55vw); }
   .font-selector, .design-selector { width: 100%; justify-content: space-between; }
