@@ -49,12 +49,46 @@
 
 /* Second Try replaces the flat circle with a light summer-orbit motif. */
 html[data-design='second-try'] .page-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
     radial-gradient(circle at 89% 3.5rem, transparent 0 3.9rem, oklch(.68 .105 198 / .2) 3.95rem 4.16rem, transparent 4.22rem 5.7rem, oklch(.86 .15 85 / .28) 5.76rem 6.12rem, transparent 6.18rem),
     radial-gradient(circle at 78% 1.7rem, oklch(.7 .12 195 / .22) 0 .68rem, transparent .73rem),
     radial-gradient(circle at 97% 9.2rem, oklch(.84 .16 78 / .34) 0 .52rem, transparent .58rem),
     linear-gradient(180deg, oklch(.94 .055 196) 0, var(--background) 24rem);
 }
+html[data-design='second-try'] .page-frame > * { position: relative; z-index: 1; }
+html[data-design='second-try'] .page-frame::before {
+  position: absolute;
+  z-index: 0;
+  top: -9.5rem;
+  right: -7.5rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, oklch(.95 .035 198 / .94) 0 39%, transparent 39.5%),
+    repeating-conic-gradient(from 8deg, oklch(.86 .16 83 / .42) 0 7deg, transparent 7deg 17deg, oklch(.66 .12 195 / .28) 17deg 23deg, transparent 23deg 36deg);
+  content: '';
+  pointer-events: none;
+}
+html[data-design='second-try'] .page-frame::after {
+  position: absolute;
+  z-index: 0;
+  top: 7rem;
+  right: 17%;
+  width: .72rem;
+  height: .72rem;
+  border-radius: 50%;
+  background: oklch(.72 .15 35 / .65);
+  box-shadow: 3.5rem 3.2rem 0 .18rem oklch(.7 .12 195 / .4), -2.2rem 4.8rem 0 -.08rem oklch(.86 .16 83 / .62), 5.1rem 7rem 0 -.14rem oklch(.72 .15 35 / .48);
+  content: '';
+  pointer-events: none;
+}
+html[data-design='second-try'] .finder-card { position: relative; }
+html[data-design='second-try'] .finder-card::before { position: absolute; z-index: 2; inset: 0 0 auto; height: .34rem; background: linear-gradient(90deg, oklch(.68 .12 195), oklch(.86 .16 83) 58%, oklch(.72 .15 35)); content: ''; }
+html[data-design='second-try'] .temperature-value { background: linear-gradient(135deg, var(--secondary), color-mix(in oklch, var(--accent) 24%, white)); box-shadow: 0 3px 0 oklch(.68 .12 195 / .16); }
 
 html[data-design='amiga'],
 html[data-design='amiga'] body {
