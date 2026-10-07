@@ -46,8 +46,9 @@ This decision may only be changed by a majority vote of the full council.
 
 The local design lab is available at
 [http://localhost:3001/?designselect=true](http://localhost:3001/?designselect=true).
-It currently includes **Swiss Lido**, the restored **First Try**, and an
-**Amiga Chiptune** experiment. The selected design persists while browsing.
+It currently includes **Swiss Lido**, the restored **First Try**, **Amiga
+Chiptune**, **Modern macOS**, **Vintage 60s**, and **MS-DOS** experiments. The
+selected design persists while browsing.
 
 Use `?fontselect=true&designselect=true` to show both design and font controls.
 

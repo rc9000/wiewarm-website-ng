@@ -91,6 +91,125 @@ html[data-design='amiga'] .button-link { border: 2px solid #160b2d; border-radiu
 html[data-design='amiga'] .site-footer { color: white; background: #662d91; border-top: 4px solid #00e5ff; }
 html[data-design='amiga'] .footer-inner a { color: #fff200; }
 
+/* Modern macOS: airy glass, quiet chrome and wallpaper-like color. */
+html[data-design='macos'],
+html[data-design='macos'] body {
+  --background: #f4f6fb; --foreground: #1d1d1f;
+  --card: rgb(255 255 255 / .78); --card-foreground: #1d1d1f; --popover: #fff; --popover-foreground: #1d1d1f;
+  --primary: #007aff; --primary-foreground: #fff; --secondary: #e8f3ff; --secondary-foreground: #005cc5;
+  --muted: #edf0f5; --muted-foreground: #6e6e73; --accent: #ffcc00; --accent-foreground: #1d1d1f;
+  --destructive: #ff3b30; --border: rgb(29 29 31 / .14); --input: rgb(29 29 31 / .18); --ring: #007aff; --radius: 1.15rem;
+}
+
+html[data-design='macos'] .page-frame { background: radial-gradient(circle at 8% 2%, rgb(105 223 255 / .58), transparent 30rem), radial-gradient(circle at 92% 12%, rgb(255 126 182 / .42), transparent 26rem), radial-gradient(circle at 58% 78%, rgb(177 128 255 / .24), transparent 30rem), #f4f6fb; }
+html[data-design='macos'] .site-header { margin-top: .7rem; border: 1px solid rgb(255 255 255 / .72); border-radius: 1.2rem; background: rgb(255 255 255 / .66); box-shadow: 0 10px 35px rgb(37 45 80 / .12); backdrop-filter: blur(22px) saturate(150%); }
+html[data-design='macos'] .header-inner { min-height: 4.5rem; }
+html[data-design='macos'] .brand { color: #1d1d1f; font-weight: 700; letter-spacing: -.035em; }
+html[data-design='macos'] .brand > span:last-child span { color: #007aff; }
+html[data-design='macos'] .brand-mark { border: 0; color: white; background: linear-gradient(145deg, #0a84ff, #5e5ce6); box-shadow: 0 6px 16px rgb(0 122 255 / .26); }
+html[data-design='macos'] .font-selector, html[data-design='macos'] .design-selector { color: #6e6e73; font-weight: 650; }
+html[data-design='macos'] .font-selector select, html[data-design='macos'] .design-selector select { border: 1px solid rgb(29 29 31 / .12); border-radius: .7rem; background: rgb(255 255 255 / .72); box-shadow: 0 2px 8px rgb(37 45 80 / .08); }
+html[data-design='macos'] .finder-card { position: relative; overflow: hidden; padding-top: 1.9rem; border: 1px solid rgb(255 255 255 / .85); border-radius: 1.3rem; background: rgb(255 255 255 / .74); box-shadow: 0 24px 70px rgb(37 45 80 / .16); backdrop-filter: blur(28px) saturate(155%); }
+html[data-design='macos'] .finder-card::before { position: absolute; z-index: 2; top: .65rem; left: .9rem; width: .68rem; height: .68rem; border-radius: 50%; background: #ff5f57; box-shadow: 1.15rem 0 #febc2e, 2.3rem 0 #28c840; content: ''; }
+html[data-design='macos'] .filter-bar { border-bottom: 1px solid var(--border); background: rgb(245 246 250 / .72); }
+html[data-design='macos'] .search-field input { border: 1px solid rgb(29 29 31 / .12); border-radius: .75rem; background: rgb(255 255 255 / .82); box-shadow: inset 0 1px 2px rgb(0 0 0 / .04), 0 1px 2px rgb(0 0 0 / .04); }
+html[data-design='macos'] .temperature-table th { color: #6e6e73; background: rgb(237 240 245 / .82); }
+html[data-design='macos'] body .temperature-table tbody tr:nth-child(even) { background: rgb(244 246 251 / .72); }
+html[data-design='macos'] .pool-link, html[data-design='macos'] .detail-temp, html[data-design='macos'] .contact-links a { color: #007aff; }
+html[data-design='macos'] .temperature-value { border: 0; border-radius: .65rem; color: #005cc5; background: #e8f3ff; }
+html[data-design='macos'] .canton-pill { border-radius: .45rem; color: #375b7f; background: #e8edf4; }
+html[data-design='macos'] .detail-card, html[data-design='macos'] .contact-card, html[data-design='macos'] .weather-card, html[data-design='macos'] .error-card { border: 1px solid rgb(255 255 255 / .84); border-radius: 1.3rem; background: rgb(255 255 255 / .76); box-shadow: 0 18px 55px rgb(37 45 80 / .13); backdrop-filter: blur(24px); }
+html[data-design='macos'] .section-icon { border: 0; border-radius: .75rem; color: #007aff; background: #e8f3ff; }
+html[data-design='macos'] .basin-table th { color: #6e6e73; background: #edf0f5; }
+html[data-design='macos'] .notice-list article { border-left-color: #ffcc00; border-radius: .75rem; background: rgb(255 204 0 / .12); }
+html[data-design='macos'] .button-link { border-radius: .75rem; background: #007aff; box-shadow: 0 6px 16px rgb(0 122 255 / .24); }
+html[data-design='macos'] .site-footer { color: #6e6e73; background: rgb(255 255 255 / .45); backdrop-filter: blur(16px); }
+html[data-design='macos'] .footer-inner a { color: #007aff; }
+
+/* Vintage 60s: warm print colors, chunky geometry and optimistic curves. */
+html[data-design='sixties'],
+html[data-design='sixties'] body {
+  --background: #f5e6c8; --foreground: #3b2b20;
+  --card: #fff7df; --card-foreground: #3b2b20; --popover: #fff7df; --popover-foreground: #3b2b20;
+  --primary: #d54b28; --primary-foreground: #fff7df; --secondary: #86a64a; --secondary-foreground: #24320e;
+  --muted: #ead8ad; --muted-foreground: #735a40; --accent: #f0a51a; --accent-foreground: #3b2b20;
+  --destructive: #b52c2c; --border: #3b2b20; --input: #3b2b20; --ring: #d54b28; --radius: 1.75rem;
+}
+
+html[data-design='sixties'] .page-frame { background: radial-gradient(circle at 8% 8%, #f0a51a 0 4.5rem, transparent 4.6rem), radial-gradient(circle at 90% 3%, #86a64a 0 8rem, transparent 8.1rem), repeating-linear-gradient(135deg, rgb(59 43 32 / .035) 0 2px, transparent 2px 9px), #f5e6c8; }
+html[data-design='sixties'] .site-header { border-bottom: .45rem solid #d54b28; background: #86a64a; }
+html[data-design='sixties'] .brand { color: #3b2b20; font-size: 1.55rem; font-weight: 900; letter-spacing: -.055em; }
+html[data-design='sixties'] .brand > span:last-child span { color: #fff7df; }
+html[data-design='sixties'] .brand-mark { border: 3px solid #3b2b20; border-radius: 50% 40% 55% 42%; color: #3b2b20; background: #f0a51a; transform: rotate(-5deg); }
+html[data-design='sixties'] .font-selector, html[data-design='sixties'] .design-selector { color: #3b2b20; }
+html[data-design='sixties'] .font-selector select, html[data-design='sixties'] .design-selector select { border: 3px solid #3b2b20; border-radius: 999px; color: #3b2b20; background: #fff7df; }
+html[data-design='sixties'] .finder-card { overflow: hidden; border: 3px solid #3b2b20; border-radius: 2.2rem 1rem 2.4rem 1.25rem; background: #fff7df; box-shadow: .65rem .65rem 0 #d54b28; transform: rotate(-.08deg); }
+html[data-design='sixties'] .filter-bar { border-bottom: 3px solid #3b2b20; background: #f0a51a; }
+html[data-design='sixties'] .search-field input { border: 3px solid #3b2b20; border-radius: 999px; color: #3b2b20; background: #fff7df; }
+html[data-design='sixties'] .temperature-table th { color: #fff7df; background: #d54b28; }
+html[data-design='sixties'] body .temperature-table tbody tr:nth-child(even) { background: #efe0bd; }
+html[data-design='sixties'] .pool-link, html[data-design='sixties'] .detail-temp, html[data-design='sixties'] .contact-links a { color: #b93d20; }
+html[data-design='sixties'] .temperature-value { border: 2px solid #3b2b20; border-radius: 999px 750px 900px 700px; color: #3b2b20; background: #f0a51a; }
+html[data-design='sixties'] .canton-pill { border: 2px solid #3b2b20; border-radius: 50%; color: #fff7df; background: #86a64a; }
+html[data-design='sixties'] .detail-card, html[data-design='sixties'] .contact-card, html[data-design='sixties'] .weather-card, html[data-design='sixties'] .error-card { border: 3px solid #3b2b20; border-radius: 2rem 1rem 2.25rem 1.2rem; background: #fff7df; box-shadow: .45rem .45rem 0 #86a64a; }
+html[data-design='sixties'] .section-heading p, html[data-design='sixties'] .eyebrow { color: #b93d20; }
+html[data-design='sixties'] .section-icon { border: 2px solid #3b2b20; border-radius: 50% 42% 55% 46%; color: #3b2b20; background: #f0a51a; transform: rotate(-4deg); }
+html[data-design='sixties'] .section-icon.sunny { background: #86a64a; }
+html[data-design='sixties'] .basin-table th { color: #fff7df; background: #86a64a; }
+html[data-design='sixties'] .notice-list article { border-left-color: #d54b28; border-radius: 1rem 2rem 1rem 1.5rem; background: #ead8ad; }
+html[data-design='sixties'] .button-link { border: 3px solid #3b2b20; border-radius: 999px; color: #fff7df; background: #d54b28; box-shadow: .3rem .3rem 0 #f0a51a; }
+html[data-design='sixties'] .site-footer { color: #fff7df; background: #3b2b20; }
+html[data-design='sixties'] .footer-inner a { color: #f0a51a; }
+
+/* MS-DOS: text-mode navy, phosphor cyan and strict rectangular UI. */
+html[data-design='ms-dos'],
+html[data-design='ms-dos'] body {
+  --background: #0000aa; --foreground: #ffffff;
+  --card: #0000aa; --card-foreground: #ffffff; --popover: #0000aa; --popover-foreground: #ffffff;
+  --primary: #00ffff; --primary-foreground: #000000; --secondary: #00aaaa; --secondary-foreground: #000000;
+  --muted: #000080; --muted-foreground: #c0c0c0; --accent: #ffff55; --accent-foreground: #000000;
+  --destructive: #ff5555; --border: #ffffff; --input: #ffffff; --ring: #ffff55; --radius: 0;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+html[data-design='ms-dos'] .page-frame { background: #0000aa; }
+html[data-design='ms-dos'] .site-header { border-bottom: 0; color: #000000; background: #c0c0c0; box-shadow: inset 0 -4px 0 #000000, inset 0 -6px 0 #ffffff; }
+html[data-design='ms-dos'] .brand { color: #000000; font-family: inherit; font-weight: 700; letter-spacing: 0; text-transform: uppercase; }
+html[data-design='ms-dos'] .brand > span:last-child::before { content: 'C:\\WWW\\'; }
+html[data-design='ms-dos'] .brand > span:last-child span { color: #0000aa; }
+html[data-design='ms-dos'] .brand-mark { border: 2px solid #000000; border-radius: 0; color: #000000; background: #00aaaa; box-shadow: inset -3px -3px 0 #008080, inset 3px 3px 0 #00ffff; }
+html[data-design='ms-dos'] .font-selector, html[data-design='ms-dos'] .design-selector { color: #000000; font-family: inherit; text-transform: uppercase; }
+html[data-design='ms-dos'] .font-selector select, html[data-design='ms-dos'] .design-selector select { border: 2px solid #000000; border-radius: 0; color: #ffffff; background: #0000aa; box-shadow: inset -2px -2px 0 #000080, inset 2px 2px 0 #00ffff; font-family: inherit; }
+html[data-design='ms-dos'] .finder-card { overflow: hidden; border: 2px solid #ffffff; border-radius: 0; background: #0000aa; box-shadow: 8px 8px 0 #000000; }
+html[data-design='ms-dos'] .finder-card::before { display: block; padding: .25rem .6rem; color: #000000; background: #00aaaa; font-weight: 700; content: ' WIEWARM.EXE '; text-align: center; }
+html[data-design='ms-dos'] .filter-bar { border-bottom: 2px solid #ffffff; background: #000080; }
+html[data-design='ms-dos'] .search-field svg { color: #ffff55; }
+html[data-design='ms-dos'] .search-field input { border: 2px solid #ffffff; border-radius: 0; color: #ffff55; background: #000000; box-shadow: none; font-family: inherit; caret-color: #ffff55; }
+html[data-design='ms-dos'] .search-field input::placeholder { color: #c0c0c0; }
+html[data-design='ms-dos'] .result-bar { color: #ffffff; }
+html[data-design='ms-dos'] .page-size-form input, html[data-design='ms-dos'] .page-size-form select, html[data-design='ms-dos'] .page-size-form button { border-radius: 0; font-family: inherit; }
+html[data-design='ms-dos'] .temperature-table { border-top: 2px solid #ffffff; font-family: inherit; }
+html[data-design='ms-dos'] .temperature-table th { color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] body .temperature-table tbody tr { color: #ffffff; background: #0000aa; }
+html[data-design='ms-dos'] body .temperature-table tbody tr:nth-child(even) { background: #000080; }
+html[data-design='ms-dos'] .temperature-table td, html[data-design='ms-dos'] .temperature-table tr { border-color: #00ffff; }
+html[data-design='ms-dos'] .sort-link { color: #000000; }
+html[data-design='ms-dos'] .pool-link, html[data-design='ms-dos'] .detail-temp, html[data-design='ms-dos'] .contact-links a { color: #00ffff; text-decoration: underline; }
+html[data-design='ms-dos'] .temperature-value { border: 0; border-radius: 0; color: #000000; background: #ffff55; }
+html[data-design='ms-dos'] .canton-pill { border-radius: 0; color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .table-pagination { border-top: 2px solid #ffffff; }
+html[data-design='ms-dos'] .back-link { color: #ffff55; text-decoration: underline; text-transform: uppercase; }
+html[data-design='ms-dos'] .detail-card, html[data-design='ms-dos'] .contact-card, html[data-design='ms-dos'] .weather-card, html[data-design='ms-dos'] .error-card { border: 2px solid #ffffff; border-radius: 0; color: #ffffff; background: #000080; box-shadow: 7px 7px 0 #000000; font-family: inherit; }
+html[data-design='ms-dos'] .section-heading p, html[data-design='ms-dos'] .eyebrow { color: #ffff55; }
+html[data-design='ms-dos'] .section-icon { border: 2px solid #ffffff; border-radius: 0; color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .basin-table th { color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .notice-list article { border-left: .5rem solid #ffff55; border-radius: 0; background: #0000aa; }
+html[data-design='ms-dos'] .preformatted { color: #ffffff; }
+html[data-design='ms-dos'] .uv-reading, html[data-design='ms-dos'] .weather-reading { border: 2px solid #ffffff; border-radius: 0; color: #000000; background: #00aaaa; }
+html[data-design='ms-dos'] .button-link { border: 2px solid #ffffff; border-radius: 0; color: #000000; background: #c0c0c0; box-shadow: inset -3px -3px 0 #808080, inset 3px 3px 0 #ffffff; font-family: inherit; text-transform: uppercase; }
+html[data-design='ms-dos'] .site-footer { color: #c0c0c0; background: #000000; border-top: 2px solid #ffffff; font-family: inherit; }
+html[data-design='ms-dos'] .footer-inner a { color: #00ffff; }
+
 @media (max-width: 760px) {
   .header-tools { width: min(15rem, 55vw); }
   .font-selector, .design-selector { width: 100%; justify-content: space-between; }
