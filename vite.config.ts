@@ -47,9 +47,8 @@ export default defineConfig(async () => {
   return {
     css: { postcss: { plugins: [tailwindcss()] } },
     server: {
-      // Keep local development private while avoiding browser-specific
-      // localhost resolution differences between IPv4 and IPv6.
-      host: '127.0.0.1',
+      // Accept local and LAN connections, including macOS en interfaces.
+      host: '0.0.0.0',
       ...(isCodexSeatbeltSandbox
         ? { watch: { useFsEvents: false, usePolling: true } }
         : {}),
