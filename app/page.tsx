@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowDown, ArrowRight, ArrowUp, Search, ThermometerSun, Waves, X } from 'lucide-react';
 import { SummerHero } from '@/components/summer-hero';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { SearchAutocomplete } from '@/components/search-autocomplete';
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -45,9 +45,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
     <section className="finder-card" id="temperaturen" aria-label={`Temperatursuche mit ${rows.length} Messwerten`}>
       <div className="summer-only finder-heading"><h2>Wassertemperaturen</h2><span><Waves aria-hidden="true" /> Badis, Seen & Flüsse</span></div>
       <form key={`search-${toQueryString(query)}`} className="filter-bar" action="/#temperaturen" method="get">
-        <label className="search-field" htmlFor="global-search"><span className="sr-only">Alle Felder durchsuchen</span><Search aria-hidden="true" />
-          <Input id="global-search" name="q" type="search" list="search-suggestions" autoComplete="off" defaultValue={query.q} placeholder="Ort, Badi oder Gewässer suchen …" /></label>
-        <datalist id="search-suggestions">{suggestions.map((suggestion) => <option key={suggestion} value={suggestion} />)}</datalist>
+        <SearchAutocomplete suggestions={suggestions} defaultValue={query.q} placeholder="Ort, Badi oder Gewässer suchen …" />
         <label className="summer-only canton-filter"><span className="sr-only">Kanton</span><select name="kanton" defaultValue={query.kanton}><option value="">Alle Kantone</option>{[...new Set([...cantons, ...(query.kanton ? [query.kanton] : [])])].sort().map((canton) => <option key={canton} value={canton}>{canton}</option>)}</select></label>
         <button className="summer-only search-submit" type="submit">Ab ans Wasser <ArrowRight aria-hidden="true" /></button>
         <input type="hidden" name="sort" value={query.sort} /><input type="hidden" name="direction" value={query.direction} />

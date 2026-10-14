@@ -76,6 +76,10 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .search-field { position: relative; flex: 1; min-width: 14rem; }
 .search-field svg { position: absolute; left: .95rem; top: .84rem; width: 1.1rem; z-index: 1; color: var(--foreground); }
 .search-field input { height: 3rem; padding-left: 2.7rem; border: 2px solid var(--foreground); background: white; }
+.search-suggestions { position: absolute; z-index: 30; top: calc(100% + .35rem); right: 0; left: 0; max-height: min(18rem, 50dvh); margin: 0; padding: .35rem; overflow-y: auto; overscroll-behavior: contain; list-style: none; border: 1px solid var(--border); border-radius: .8rem; color: var(--popover-foreground); background: var(--popover); box-shadow: 0 18px 40px rgb(0 0 0 / .18); }
+.search-suggestions[hidden] { display: none; }
+.search-suggestions li { display: flex; align-items: center; min-height: 2.75rem; padding: .5rem .75rem; border-radius: .55rem; font-size: 1rem; text-align: left; cursor: pointer; }
+.search-suggestions li:hover, .search-suggestions li[aria-selected=true] { background: var(--muted); }
 .result-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.4rem; padding: .8rem 1.2rem; }
 .result-bar p { margin: 0; color: var(--muted-foreground); }
 .result-bar strong { color: var(--foreground); }
