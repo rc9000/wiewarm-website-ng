@@ -37,6 +37,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
   const page = Math.min(query.page, pageCount);
   const visible = filtered.slice((page - 1) * pageSize, page * pageSize);
   const cantons = [...new Set(rows.map((row) => row.kanton).filter(Boolean))].sort();
+  const suggestions = [...new Set(rows.flatMap((row) => [row.ort, row.bad]).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'de-CH'));
   const hasFilters = Boolean(query.q || query.ort || query.bad || query.becken || query.plz || query.kanton);
 
   return <main id="main-content" className="site-shell page-main home-main">
@@ -45,7 +46,8 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
       <div className="summer-only finder-heading"><h2>Wassertemperaturen</h2><span><Waves aria-hidden="true" /> Badis, Seen & Flüsse</span></div>
       <form key={`search-${toQueryString(query)}`} className="filter-bar" action="/#temperaturen" method="get">
         <label className="search-field" htmlFor="global-search"><span className="sr-only">Alle Felder durchsuchen</span><Search aria-hidden="true" />
-          <Input id="global-search" name="q" type="search" defaultValue={query.q} placeholder="Ort, Badi oder Gewässer suchen …" /></label>
+          <Input id="global-search" name="q" type="search" list="search-suggestions" autoComplete="off" defaultValue={query.q} placeholder="Ort, Badi oder Gewässer suchen …" /></label>
+        <datalist id="search-suggestions">{suggestions.map((suggestion) => <option key={suggestion} value={suggestion} />)}</datalist>
         <label className="summer-only canton-filter"><span className="sr-only">Kanton</span><select name="kanton" defaultValue={query.kanton}><option value="">Alle Kantone</option>{[...new Set([...cantons, ...(query.kanton ? [query.kanton] : [])])].sort().map((canton) => <option key={canton} value={canton}>{canton}</option>)}</select></label>
         <button className="summer-only search-submit" type="submit">Ab ans Wasser <ArrowRight aria-hidden="true" /></button>
         <input type="hidden" name="sort" value={query.sort} /><input type="hidden" name="direction" value={query.direction} />
