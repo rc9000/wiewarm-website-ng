@@ -60,10 +60,10 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
   const recentWeather = location.weather.filter((entry) => isRecent(entry.date, 3));
   const uvIsRecent = location.uvDate && isRecent(location.uvDate, 7);
 
-  return <main className="site-shell detail-main">
+  return <main id="main-content" className="site-shell detail-main">
     <Button variant="ghost" nativeButton={false} render={<Link href="/" />} className="back-link"><ArrowLeft aria-hidden="true" /> Alle Temperaturen</Button>
 
-    <header className="detail-hero"><h1>{location.name}</h1></header>
+    <header className="detail-hero"><p className="summer-only summer-eyebrow"><MapPin aria-hidden="true" />{location.city}{location.canton ? ` · ${location.canton}` : ''}</p><h1>{location.name}</h1></header>
 
     <div className="detail-layout">
       <div className="detail-primary">

@@ -45,11 +45,20 @@ This decision may only be changed by a majority vote of the full council.
 ## Design selection mode
 
 The design selector is always visible in the site header, including in a fresh
-browser session. It currently includes **Swiss Lido**, the restored **First
+browser session. **Sommerfrische** is the default: a bright turquoise, yellow,
+and coral palette, a compact banner with an original lakeside SVG postcard,
+quick place searches, canton filtering, and prominent temperature readings.
+Compact rows on desktop and phones keep more measurements visible. Geist
+remains the interface typeface, with Fraunces used for the postcard-style accent.
+Older readings are labelled explicitly. All data continues to come from the
+existing wiewarm API, with server-rendered search, sorting, and pagination.
+
+The selector also includes **Swiss Lido**, the restored **First
 Try**, a summer-orbit **Second Try**, the proposal-inspired **Summer Swim**,
 **Amiga Chiptune**, **Modern macOS**, **Vintage 60s**, **MS-DOS**, and a darker
 cathedral-inspired **Goth** experiment. The selected design persists while
-browsing.
+browsing and is restored before the page paints. This edition uses the
+`wiewarm-design-v2` preference key so returning visitors see the new default once.
 
 Use `?fontselect=true` to show the additional font control.
 
