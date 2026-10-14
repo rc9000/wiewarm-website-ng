@@ -62,10 +62,10 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
   const latestNews = latestLocationNews(location.notices, 1);
   const visibleNotices = latestNews.length ? [...latestNews, ...location.notices.filter((notice) => !latestNews.some((item) => item.date === notice.date && item.info === notice.info))] : location.notices;
 
-  return <main className="site-shell detail-main">
+  return <main id="main-content" className="site-shell detail-main">
     <Button variant="ghost" nativeButton={false} render={<Link href="/" />} className="back-link"><ArrowLeft aria-hidden="true" /> Alle Temperaturen</Button>
 
-    <header className="detail-hero"><h1>{location.name}</h1></header>
+    <header className="detail-hero"><p className="summer-only summer-eyebrow"><MapPin aria-hidden="true" />{location.city}{location.canton ? ` · ${location.canton}` : ''}</p><h1>{location.name}</h1></header>
 
     <div className="detail-layout">
       <div className="detail-primary">

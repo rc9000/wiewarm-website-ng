@@ -49,6 +49,8 @@ export default defineConfig(async () => {
     server: {
       // Accept local and LAN connections, including macOS en interfaces.
       host: '0.0.0.0',
+      // The VPS reverse proxy forwards the public hostname to this dev server.
+      allowedHosts: ['www.wiewarm.ch'],
       ...(isCodexSeatbeltSandbox
         ? { watch: { useFsEvents: false, usePolling: true } }
         : {}),

@@ -12,6 +12,10 @@ export function SiteHeader() {
       </span>
       <span>wiewarm<span>.ch</span></span>
     </Link>
+    <nav className="summer-only header-nav" aria-label="Hauptnavigation">
+      <Link href="/#temperaturen">Wassertemperaturen</Link>
+      <Link href="/#ueber">Über wiewarm</Link>
+    </nav>
     <div className="header-tools"><DesignSelector /><FontSelector /></div>
   </div></header>;
 }
