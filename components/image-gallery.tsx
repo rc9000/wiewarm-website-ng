@@ -12,8 +12,8 @@ export function ImageGallery({ images, name, city }: { images: LocationImage[]; 
   const current = selected === null ? null : images[selected];
 
   return <>
-    <div className="image-gallery">{images.map((image, index) => <button key={image.image} type="button" onClick={() => setSelected(index)} className={index === 0 ? 'gallery-featured' : undefined} aria-label={`${altFor(image, index)} vergrössern`}>
-      <Image src={image.image} alt={altFor(image, index)} fill sizes={index === 0 ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 50vw, 24vw'} priority={index === 0} />
+    <div className="image-gallery">{images.map((image, index) => <button key={image.image} type="button" onClick={() => setSelected(index)} aria-label={`${altFor(image, index)} vergrössern`}>
+      <Image src={image.image} alt={altFor(image, index)} fill sizes="(max-width: 450px) 100vw, (max-width: 760px) 50vw, 24vw" priority={index === 0} />
       {image.text ? <span>{image.text}</span> : null}
     </button>)}</div>
 

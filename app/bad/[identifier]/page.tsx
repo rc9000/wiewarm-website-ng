@@ -84,13 +84,12 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
           <div className="notice-list">{visibleNotices.map((notice, index) => <article key={`${notice.date}-${index}`}><time dateTime={notice.date}>{notice.datePretty}</time><p>{notice.info}</p></article>)}</div>
         </section> : null}
 
-        {location.images.length ? <section className="detail-card" aria-labelledby="images-heading"><div className="section-heading"><div className="section-icon"><Images aria-hidden="true" /></div><div><p>Einblicke</p><h2 id="images-heading">Bilder</h2></div></div>
-          <ImageGallery images={location.images} name={location.name} city={location.city} />
-        </section> : null}
-
-        {(location.openingHours || location.prices || location.info) ? <section className="info-grid">
+        {(location.openingHours || location.prices || location.images.length || location.info) ? <section className="info-grid">
           {location.openingHours ? <InfoBlock icon={<Clock3 />} title="Öffnungszeiten" text={location.openingHours} /> : null}
           {location.prices ? <InfoBlock icon={<Ticket />} title="Preise" text={location.prices} /> : null}
+          {location.images.length ? <section className="detail-card info-wide" aria-labelledby="images-heading"><div className="section-heading"><div className="section-icon"><Images aria-hidden="true" /></div><div><h2 id="images-heading">Bilder</h2></div></div>
+            <ImageGallery images={location.images} name={location.name} city={location.city} />
+          </section> : null}
           {location.info ? <InfoBlock icon={<Info />} title="Weitere Informationen" text={location.info} wide /> : null}
         </section> : null}
       </div>
