@@ -32,6 +32,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
   }
 
   const filtered = filterAndSortTemperatures(rows, query);
+  const resultLabel = filtered.length === 1 ? 'Eintrag' : 'Einträge';
   const pageSize = query.pageSize === 'all' ? Math.max(filtered.length, 1) : query.pageSize;
   const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
   const page = Math.min(query.page, pageCount);
@@ -54,7 +55,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
       </form>
       <div className="summer-only quick-search"><span>Zum Beispiel</span>{['Zürich', 'Bern', 'Luzern', 'Basel', 'Aare'].map((place) => <Link key={place} href={`/?${toQueryString(query, { q: place, ort: '', bad: '', becken: '', plz: '', kanton: '', page: 1 })}#temperaturen`} aria-current={query.q === place ? 'true' : undefined}>{place}<ArrowRight aria-hidden="true" /></Link>)}</div>
 
-      <div className="result-bar"><div className="result-summary"><p><strong>{filtered.length}</strong> Einträge</p>{hasFilters ? <Link className="clear-filters" href={`/?${toQueryString(query, { q: '', ort: '', bad: '', becken: '', plz: '', kanton: '', page: 1 })}#temperaturen`}><X aria-hidden="true" /> Filter löschen</Link> : <span className="summer-only result-hint">Für deinen nächsten Ausflug</span>}</div>
+      <div className="result-bar"><div className="result-summary"><p><strong>{filtered.length}</strong> {resultLabel}</p>{hasFilters ? <Link className="clear-filters" href={`/?${toQueryString(query, { q: '', ort: '', bad: '', becken: '', plz: '', kanton: '', page: 1 })}#temperaturen`}><X aria-hidden="true" /> Filter löschen</Link> : <span className="summer-only result-hint">Für deinen nächsten Ausflug</span>}</div>
         <form key={`size-${toQueryString(query)}`} action="/#temperaturen" method="get" className="page-size-form">
           {(['q', 'ort', 'bad', 'becken', 'plz', 'kanton', 'sort', 'direction'] as const).map((key) => query[key] ? <input key={key} type="hidden" name={key} value={String(query[key])} /> : null)}
           <label htmlFor="page-size">Pro Seite</label>
