@@ -161,6 +161,8 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
   .info-grid { grid-template-columns: 1fr; }.info-wide { grid-column: auto; }
   .notice-list article { grid-template-columns: 1fr; gap: .35rem; }
   .image-gallery button { flex-basis: calc((100% - .7rem) / 2); }
+  .temperature-table tbody tr { position: relative; cursor: pointer; }
+  .temperature-table .pool-link::after { position: absolute; z-index: 1; inset: 0; content: ''; }
   /* Sommerfrische has its own card layout; elsewhere keep Ort, Bad and Wasser so the temperature fits without scrolling. */
   html:not([data-design='sommerfrische']) .temperature-table { min-width: 0; }
   html:not([data-design='sommerfrische']) .temperature-table :is(th, td):is(:nth-child(3), :nth-child(5), :nth-child(6), :nth-child(7)) { display: none; }

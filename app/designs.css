@@ -442,6 +442,19 @@ html[data-design='alpine-lake'] .button-link { border-radius: 999px; background:
 html[data-design='alpine-lake'] .site-footer { margin-top: 0; color: #b6d2dc; background: #0b2a3c; }
 html[data-design='alpine-lake'] .footer-inner a { color: #fff; }
 
+/* Mobile: two-line rows with the measurement time under the temperature, like Sommerfrische. */
+@media (max-width: 760px) {
+  html[data-design='alpine-lake'] .temperature-table, html[data-design='alpine-lake'] .temperature-table tbody, html[data-design='alpine-lake'] .temperature-table thead { display: block; }
+  html[data-design='alpine-lake'] .temperature-table thead tr { display: flex; justify-content: space-between; gap: .5rem; padding: .75rem .9rem; background: #f1f8fa; }
+  html[data-design='alpine-lake'] .temperature-table th { height: auto; padding: 0; background: transparent; }
+  html[data-design='alpine-lake'] .temperature-table th:nth-child(5) { display: block; }
+  html[data-design='alpine-lake'] .temperature-table tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: .15rem .75rem; padding: .8rem .9rem; }
+  html[data-design='alpine-lake'] .temperature-table td { display: block; height: auto; padding: 0; border: 0; white-space: normal; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(2) { grid-row: 1; grid-column: 1; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(1) { grid-row: 2; grid-column: 1; color: var(--muted-foreground); font-size: .85rem; font-weight: 400; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(4) { grid-row: 1; grid-column: 2; justify-self: end; }
+  html[data-design='alpine-lake'] .temperature-table td:nth-child(5) { display: block; grid-row: 2; grid-column: 2; justify-self: end; color: var(--muted-foreground); font-size: .75rem; white-space: nowrap; }
+}
 @media (max-width: 760px) {
   .header-tools { width: min(15rem, 55vw); }
   .font-selector, .design-selector { width: 100%; justify-content: space-between; }
