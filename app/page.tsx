@@ -11,7 +11,7 @@ import { getCurrentTemperatures } from '@/lib/wiewarm-api';
 import { filterAndSortTemperatures, parseTemperatureQuery, toQueryString, type SortColumn, type TemperatureQuery } from '@/lib/temperature-query';
 
 type Params = Record<string, string | string[] | undefined>;
-const columnLabels: Record<SortColumn, string> = { ort: 'Ort', bad: 'Bad / Gewässer', becken: 'Messstelle', temp: 'Wasser', date: 'Gemessen', plz: 'PLZ', kanton: 'Kanton' };
+const columnLabels: Record<SortColumn, string> = { ort: 'Ort', bad: 'Bad / Gewässer', becken: 'Messstelle', temp: 'Temperatur', date: 'Gemessen', plz: 'PLZ', kanton: 'Kanton' };
 
 function SortLink({ column, query }: { column: SortColumn; query: TemperatureQuery }) {
   const active = query.sort === column;
@@ -54,7 +54,7 @@ export default async function Home({ searchParams }: { searchParams?: Promise<Pa
       </form>
       <div className="summer-only quick-search"><span>Zum Beispiel</span>{['Zürich', 'Bern', 'Luzern', 'Basel', 'Aare'].map((place) => <Link key={place} href={`/?${toQueryString(query, { q: place, ort: '', bad: '', becken: '', plz: '', kanton: '', page: 1 })}#temperaturen`} aria-current={query.q === place ? 'true' : undefined}>{place}<ArrowRight aria-hidden="true" /></Link>)}</div>
 
-      <div className="result-bar"><div className="result-summary"><p><strong>{filtered.length}</strong> Messwerte</p>{hasFilters ? <Link className="clear-filters" href={`/?${toQueryString(query, { q: '', ort: '', bad: '', becken: '', plz: '', kanton: '', page: 1 })}#temperaturen`}><X aria-hidden="true" /> Filter löschen</Link> : <span className="summer-only result-hint">Für deinen nächsten Ausflug</span>}</div>
+      <div className="result-bar"><div className="result-summary"><p><strong>{filtered.length}</strong> Einträge</p>{hasFilters ? <Link className="clear-filters" href={`/?${toQueryString(query, { q: '', ort: '', bad: '', becken: '', plz: '', kanton: '', page: 1 })}#temperaturen`}><X aria-hidden="true" /> Filter löschen</Link> : <span className="summer-only result-hint">Für deinen nächsten Ausflug</span>}</div>
         <form key={`size-${toQueryString(query)}`} action="/#temperaturen" method="get" className="page-size-form">
           {(['q', 'ort', 'bad', 'becken', 'plz', 'kanton', 'sort', 'direction'] as const).map((key) => query[key] ? <input key={key} type="hidden" name={key} value={String(query[key])} /> : null)}
           <label htmlFor="page-size">Pro Seite</label>
