@@ -84,6 +84,19 @@ export interface SwimmingLocationDetail {
   weather: WeatherEntry[];
 }
 
+export function latestLocationNews(notices: LocationNotice[], limit = 3): LocationNotice[] {
+  return [...notices]
+    .sort((left, right) => {
+      const leftTime = Date.parse(left.date || right.date);
+      const rightTime = Date.parse(right.date || left.date);
+      if (Number.isNaN(leftTime) && Number.isNaN(rightTime)) return 0;
+      if (Number.isNaN(leftTime)) return 1;
+      if (Number.isNaN(rightTime)) return -1;
+      return rightTime - leftTime;
+    })
+    .slice(0, limit);
+}
+
 export interface ApiResult<T> {
   data: T;
   receivedAt: string;

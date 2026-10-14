@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatTemperature } from '@/lib/format-temperature';
-import { getSwimmingLocation, normalizeRouteIdentifier, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
+import { getSwimmingLocation, latestLocationNews, normalizeRouteIdentifier, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
 
 type RouteParams = { identifier: string };
 
@@ -59,6 +59,8 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
   const addressLines = [location.address1, location.address2, [location.postalCode, location.city].filter(Boolean).join(' ')].filter(Boolean);
   const recentWeather = location.weather.filter((entry) => isRecent(entry.date, 3));
   const uvIsRecent = location.uvDate && isRecent(location.uvDate, 7);
+  const latestNews = latestLocationNews(location.notices, 1);
+  const visibleNotices = latestNews.length ? [...latestNews, ...location.notices.filter((notice) => !latestNews.some((item) => item.date === notice.date && item.info === notice.info))] : location.notices;
 
   return <main className="site-shell detail-main">
     <Button variant="ghost" nativeButton={false} render={<Link href="/" />} className="back-link"><ArrowLeft aria-hidden="true" /> Alle Temperaturen</Button>
@@ -75,11 +77,14 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
               <TableCell><Badge variant={basin.status.toLocaleLowerCase('de-CH').includes('geöffnet') ? 'default' : 'secondary'}>{basin.status || 'Unbekannt'}</Badge></TableCell>
               <TableCell><time dateTime={basin.date}>{basin.datePretty || '–'}</time>{isStale(basin) ? <small className="stale-label">Älterer Messwert</small> : null}</TableCell>
             </TableRow>)}</TableBody></Table> : <p className="muted-copy">Keine Beckenangaben verfügbar.</p>}
+
         </section>
 
-        {location.notices.length ? <section className="detail-card" aria-labelledby="notices-heading"><div className="section-heading"><div className="section-icon sunny"><Info aria-hidden="true" /></div><div><p>Gut zu wissen</p><h2 id="notices-heading">Aktuelle Mitteilungen</h2></div></div>
-          <div className="notice-list">{location.notices.map((notice, index) => <article key={`${notice.date}-${index}`}><time dateTime={notice.date}>{notice.datePretty}</time><p>{notice.info}</p></article>)}</div>
-        </section> : null}
+        {visibleNotices.length ? <section className="detail-card" aria-labelledby="notices-heading"><div className="section-heading"><div className="section-icon sunny"><Info aria-hidden="true" /></div><div><p>Gut zu wissen</p><h2 id="notices-heading">Aktuelle Mitteilungen</h2></div></div>
+          <div className="notice-list">{visibleNotices.map((notice, index) => <article key={`${notice.date}-${index}`}><time dateTime={notice.date}>{notice.datePretty}</time><p>{notice.info}</p></article>)}</div>
+        </section> : <section className="detail-card" aria-labelledby="notices-heading"><div className="section-heading"><div className="section-icon sunny"><Info aria-hidden="true" /></div><div><p>Gut zu wissen</p><h2 id="notices-heading">Aktuelle Mitteilungen</h2></div></div>
+          <p className="muted-copy">Keine neuen Mitteilungen.</p>
+        </section>}
 
         {location.images.length ? <section className="detail-card" aria-labelledby="images-heading"><div className="section-heading"><div className="section-icon"><Images aria-hidden="true" /></div><div><p>Einblicke</p><h2 id="images-heading">Bilder</h2></div></div>
           <div className="image-gallery">{location.images.map((image, index) => <a key={image.image} href={image.original} target="_blank" rel="noreferrer" className={index === 0 ? 'gallery-featured' : undefined}>
@@ -111,6 +116,35 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
   </main>;
 }
 
+// Matches either an HTML anchor embedded in the API text (groups 1-2) or a bare URL (group 3).
+const linkPattern = /<a\s[^>]*?href\s*=\s*["']([^"']*)["'][^>]*>([\s\S]*?)<\/a>|((?:https?:\/\/|www\.)[^\s<>"]+)/gi;
+
+function toHref(url: string): string | null {
+  const href = url.trim().replace(/^www\./i, 'https://www.');
+  return /^https?:\/\//i.test(href) ? href : null;
+}
+
+function linkify(text: string): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  let last = 0;
+  for (const match of text.matchAll(linkPattern)) {
+    const start = match.index;
+    if (start > last) nodes.push(text.slice(last, start));
+    last = start + match[0].length;
+    if (match[3] === undefined) {
+      const href = toHref(match[1]);
+      const label = match[2].replace(/<[^>]*>/g, '') || match[1];
+      nodes.push(href ? <a key={start} href={href} target="_blank" rel="noreferrer">{label}</a> : label);
+      continue;
+    }
+    const url = match[3].replace(/[.,;:!?)\]]+$/, '');
+    last -= match[3].length - url.length;
+    nodes.push(<a key={start} href={toHref(url)!} target="_blank" rel="noreferrer">{url}</a>);
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
+
 function InfoBlock({ icon, label, title, text, wide = false }: { icon: React.ReactNode; label: string; title: string; text: string; wide?: boolean }) {
-  return <section className={`detail-card info-block${wide ? ' info-wide' : ''}`}><div className="section-heading"><div className="section-icon">{icon}</div><div><p>{label}</p><h2>{title}</h2></div></div><p className="preformatted">{text}</p></section>;
+  return <section className={`detail-card info-block${wide ? ' info-wide' : ''}`}><div className="section-heading"><div className="section-icon">{icon}</div><div><p>{label}</p><h2>{title}</h2></div></div><p className="preformatted">{linkify(text)}</p></section>;
 }

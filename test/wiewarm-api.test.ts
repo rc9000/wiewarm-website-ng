@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { getCurrentTemperatures, getSwimmingLocation } from '@/lib/wiewarm-api';
+import { getCurrentTemperatures, getSwimmingLocation, latestLocationNews } from '@/lib/wiewarm-api';
 
 afterEach(() => vi.unstubAllGlobals());
 
@@ -43,6 +43,18 @@ describe('wiewarm API normalization', () => {
       expect.stringContaining('/bad.json/Parkbad_M%C3%BCnsingen'),
       expect.any(Object),
     );
+  });
+
+  it('selects only the newest notice for the current overview', () => {
+    const notices = [
+      { date: '2026-09-02 00:00:00', datePretty: '02.09.', info: 'Older' },
+      { date: '2026-09-10 00:00:00', datePretty: '10.09.', info: 'Newest' },
+      { date: '2026-09-08 00:00:00', datePretty: '08.09.', info: 'Middle' },
+    ];
+
+    expect(latestLocationNews(notices, 1)).toEqual([
+      { date: '2026-09-10 00:00:00', datePretty: '10.09.', info: 'Newest' },
+    ]);
   });
 
   it('exposes upstream status codes', async () => {

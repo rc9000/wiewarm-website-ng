@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 
 const designs = [
+  { value: 'alpine-lake', label: 'Alpine Lake' },
   { value: 'swiss-lido', label: 'Swiss Lido' },
   { value: 'first-try', label: 'First Try' },
   { value: 'second-try', label: 'Second Try' },

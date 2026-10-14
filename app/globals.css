@@ -123,6 +123,8 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .basin-table td small { margin-top: .2rem; color: var(--muted-foreground); font-size: .76rem; }
 .detail-temp { color: var(--primary); font: 850 1.1rem var(--font-heading-face); }
 .stale-label { color: var(--destructive) !important; font-weight: 750; }
+.news-panel { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.news-panel h3 { margin: 0 0 .8rem; font-size: 1rem; letter-spacing: -.02em; }
 .notice-list { display: grid; gap: .7rem; }
 .notice-list article { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; padding: 1rem; border-left: .4rem solid #ff654f; border-radius: .65rem; background: #fff0eb; }
 .notice-list time { color: var(--muted-foreground); font-size: .82rem; font-weight: 750; }.notice-list p { margin: 0; }
@@ -135,6 +137,7 @@ html[data-font='fraunces'] { --font-body: "Fraunces Variable", serif; --font-hea
 .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 .info-wide { grid-column: 1 / -1; }
 .preformatted { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: color-mix(in oklch, var(--foreground) 82%, white); line-height: 1.65; }
+.preformatted a { color: var(--primary); font-weight: 650; text-decoration: underline; }
 .contact-card, .weather-card { padding: 1.4rem; }
 .contact-card address { display: grid; gap: .15rem; margin: 1.2rem 0; font-style: normal; line-height: 1.55; }
 .contact-links { display: grid; gap: .65rem; margin-bottom: 1.2rem; }
