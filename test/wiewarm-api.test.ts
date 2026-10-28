@@ -62,3 +62,14 @@ describe('wiewarm API normalization', () => {
     await expect(getSwimmingLocation('missing')).rejects.toMatchObject({ status: 404 });
   });
 });
+
+describe('API origin', () => {
+  it('can be switched to another environment via WIEWARM_ORIGIN', async () => {
+    vi.stubEnv('WIEWARM_ORIGIN', 'https://beta.wiewarm.ch/');
+    vi.resetModules();
+    const api = await import('@/lib/wiewarm-api');
+    expect(api.API_BASE).toBe('https://beta.wiewarm.ch/api/v1');
+    expect(api.wiewarmAssetUrl('img/baeder/199/1.jpg')).toBe('https://beta.wiewarm.ch/img/baeder/199/1.jpg');
+    vi.unstubAllEnvs();
+  });
+});

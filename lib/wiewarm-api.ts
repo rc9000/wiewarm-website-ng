@@ -1,6 +1,7 @@
 import 'server-only';
 
-const API_ORIGIN = 'https://www.wiewarm.ch';
+// Override with WIEWARM_ORIGIN (e.g. https://beta.wiewarm.ch) to run against another environment.
+const API_ORIGIN = (process.env.WIEWARM_ORIGIN || 'https://www.wiewarm.ch').replace(/\/+$/, '');
 export const API_BASE = `${API_ORIGIN}/api/v1`;
 
 export class WiewarmApiError extends Error {
