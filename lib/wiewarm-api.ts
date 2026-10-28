@@ -1,7 +1,7 @@
 import 'server-only';
 
 const API_ORIGIN = 'https://www.wiewarm.ch';
-const API_BASE = `${API_ORIGIN}/api/v1`;
+export const API_BASE = `${API_ORIGIN}/api/v1`;
 
 export class WiewarmApiError extends Error {
   constructor(message: string, readonly status?: number) {
@@ -162,10 +162,10 @@ function normalizeCurrentTemperature(value: unknown): CurrentTemperature | null 
   };
 }
 
-export async function getJson(path: string): Promise<unknown> {
+export async function getJson(path: string, options: { fresh?: boolean } = {}): Promise<unknown> {
   const response = await fetch(`${API_BASE}${path}`, {
     headers: { accept: 'application/json' },
-    next: { revalidate: 300 },
+    ...(options.fresh ? { cache: 'no-store' as const } : { next: { revalidate: 300 } }),
     signal: AbortSignal.timeout(8_000),
   });
 
@@ -249,9 +249,9 @@ function normalizeWeather(value: unknown): WeatherEntry | null {
   };
 }
 
-export async function getSwimmingLocation(identifier: string): Promise<SwimmingLocationDetail> {
+export async function getSwimmingLocation(identifier: string, options: { fresh?: boolean } = {}): Promise<SwimmingLocationDetail> {
   const normalizedIdentifier = normalizeRouteIdentifier(identifier);
-  const payload = await getJson(`/bad.json/${encodeURIComponent(normalizedIdentifier)}`);
+  const payload = await getJson(`/bad.json/${encodeURIComponent(normalizedIdentifier)}`, options);
   if (!isRecord(payload) || !text(payload.badid) || !text(payload.badname) || !text(payload.ort)) {
     throw new WiewarmApiError('Unexpected swimming location response');
   }

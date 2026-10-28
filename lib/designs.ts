@@ -13,7 +13,7 @@ export const designs = [
 ] as const;
 
 export type DesignValue = (typeof designs)[number]['value'];
-export const defaultDesign: DesignValue = 'sommerfrische';
+export const defaultDesign: DesignValue = 'alpine-lake';
 // A new edition starts with the new design; subsequent choices still persist.
 export const designStorageKey = 'wiewarm-design-v2';
 

@@ -20,6 +20,14 @@ npm run dev -- --port 3001
 
 Open [http://localhost:3001/](http://localhost:3001/) in a browser.
 
+## Login for pool staff (`/admin`)
+
+Staff sign in with Bad-Id and PIN against `PUT /api/v1/login/{badid}/{pin}`. The
+legacy API has no tokens, so the session cookie (httpOnly, AES-GCM encrypted)
+holds the credentials needed for later write calls. Production requires a
+`SESSION_SECRET` environment variable (a long random string); development uses a
+fixed fallback.
+
 Available checks:
 
 ```bash

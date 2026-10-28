@@ -11,7 +11,7 @@ import '@fontsource-variable/unbounded';
 import '@fontsource-variable/fraunces';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
-import { defaultDesign, designBootstrap } from '@/lib/designs';
+import { defaultDesign } from '@/lib/designs';
 import './globals.css';
 import './designs.css';
 import './sommerfrische.css';
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="de-CH" data-design={defaultDesign} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: designBootstrap }} /></head><body>
+  return <html lang="de-CH" data-design={defaultDesign} ><body>
     <a className="skip-link" href="#main-content">Zum Inhalt springen</a>
     <div className="page-frame"><SiteHeader />{children}<SiteFooter /></div>
   </body></html>;
