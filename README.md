@@ -26,7 +26,16 @@ Staff sign in with Bad-Id and PIN against `PUT /api/v1/login/{badid}/{pin}`. The
 legacy API has no tokens, so the session cookie (httpOnly, AES-GCM encrypted)
 holds the credentials needed for later write calls. Production requires a
 `SESSION_SECRET` environment variable (a long random string); development uses a
-fixed fallback.
+fixed fallback. "Passwort ändern" uses `PUT /api/v1/login/password` and keeps the session
+signed in with the new password.
+
+## Temperature history
+
+The "Temperaturverlauf" chart at the bottom of each location page uses
+`GET /api/v1/bad/{badid}/timeseries` (daily averages, up to 90 days). The 90 days
+are fetched once on the server; range (7–90 days) and pools are chosen in the
+browser, defaulting to 30 days and the main pools. If the endpoint is not
+available, the chart section is simply hidden.
 
 Available checks:
 

@@ -1,4 +1,5 @@
 import 'server-only';
+import { MAX_RANGE_DAYS, type TemperatureTimeseries, type TimeseriesPoint, type TimeseriesPool } from '@/lib/timeseries';
 
 // Override with WIEWARM_ORIGIN (e.g. https://beta.wiewarm.ch) to run against another environment.
 const API_ORIGIN = (process.env.WIEWARM_ORIGIN || 'https://www.wiewarm.ch').replace(/\/+$/, '');
@@ -287,4 +288,25 @@ export async function swimmingLocationExists(identifier: string): Promise<boolea
   const normalizedIdentifier = normalizeRouteIdentifier(identifier);
   const references = await getSwimmingLocationReferences();
   return references.some((reference) => reference.badid === normalizedIdentifier || reference.badidText === normalizedIdentifier);
+}
+
+function normalizeTimeseries(payload: unknown): TemperatureTimeseries {
+  if (!isRecord(payload) || !Array.isArray(payload.becken) || !Array.isArray(payload.data)) throw new WiewarmApiError('Unexpected timeseries response');
+  const pools = payload.becken.flatMap((value): TimeseriesPool[] => {
+    if (!isRecord(value) || !text(value.beckenid)) return [];
+    return [{ beckenid: text(value.beckenid), name: text(value.beckenname) || text(value.beckenid) }];
+  });
+  const points = payload.data.flatMap((value): TimeseriesPoint[] => {
+    if (!isRecord(value) || !text(value.date)) return [];
+    const readings = isRecord(value.temperatures) ? value.temperatures : {};
+    const temperatures: Record<string, number | null> = {};
+    for (const pool of pools) temperatures[pool.beckenid] = readings[pool.beckenid] == null ? null : finiteNumber(readings[pool.beckenid]);
+    return [{ date: text(value.date), temperatures }];
+  });
+  return { pools, points };
+}
+
+export async function getTemperatureTimeseries(badid: string): Promise<TemperatureTimeseries> {
+  if (!/^\d+$/.test(badid)) throw new WiewarmApiError('Invalid badid');
+  return normalizeTimeseries(await getJson(`/bad/${badid}/timeseries.json?days=${MAX_RANGE_DAYS}`));
 }

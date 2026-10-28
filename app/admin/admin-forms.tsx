@@ -1,13 +1,15 @@
 'use client';
 
-import { useActionState, useEffect, useRef, startTransition, type SyntheticEvent } from 'react';
+import { useActionState, useEffect, useRef, useState, startTransition, type SyntheticEvent } from 'react';
 import Image from 'next/image';
-import { CheckCircle2, Loader2, LogIn, LogOut, Trash2, TriangleAlert } from 'lucide-react';
+import { CheckCircle2, KeyRound, Loader2, LogIn, LogOut, Trash2, TriangleAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { addImage, createNews, login, logout, removeImage, removeNews, updateBaseData, updateTemperatures } from '@/app/admin/actions';
+import { addImage, changePassword, createNews, login, logout, removeImage, removeNews, updateBaseData, updateTemperatures } from '@/app/admin/actions';
 import type { ActionState } from '@/app/admin/action-state';
+import { passwordStrength } from '@/lib/password-strength';
 
 type Action = (previous: ActionState | null, formData: FormData) => Promise<ActionState>;
 
@@ -60,6 +62,35 @@ export function LoginForm() {
 
 export function LogoutButton() {
   return <form action={logout}><Button type="submit" variant="outline"><LogOut aria-hidden="true" />Abmelden</Button></form>;
+}
+
+function StrengthMeter({ password }: { password: string }) {
+  const strength = passwordStrength(password);
+  if (!strength) return null;
+  return <div className={`strength strength-${strength.level}`}>
+    <div className="strength-bar" aria-hidden="true">{[0, 1, 2, 3, 4].map((segment) => <span key={segment} className={segment <= strength.level ? 'is-on' : ''} />)}</div>
+    <p aria-live="polite"><strong>Passwortstärke: {strength.label}.</strong> {strength.hint}</p>
+  </div>;
+}
+
+export function ChangePasswordDialog() {
+  const { state, pending, formRef, onSubmit } = useAdminAction(changePassword, { resetOnSuccess: true });
+  const [newPassword, setNewPassword] = useState('');
+  return <Dialog>
+    <DialogTrigger render={<Button type="button" variant="outline" />}><KeyRound aria-hidden="true" />Passwort ändern</DialogTrigger>
+    <DialogContent className="password-dialog">
+      <DialogTitle>Passwort ändern</DialogTitle>
+      <DialogDescription>Gib Dein aktuelles Passwort und zweimal das neue Passwort ein.</DialogDescription>
+      <form ref={formRef} onSubmit={onSubmit} onReset={() => setNewPassword('')} className="admin-form">
+        <Field label="Aktuelles Passwort" id="admin-current-pin"><Input id="admin-current-pin" name="currentPin" type="password" autoComplete="current-password" required /></Field>
+        <Field label="Neues Passwort" id="admin-new-pin"><Input id="admin-new-pin" name="newPin" type="password" autoComplete="new-password" maxLength={128} onChange={(event) => setNewPassword(event.target.value)} required /></Field>
+        <StrengthMeter password={newPassword} />
+        <Field label="Neues Passwort wiederholen" id="admin-confirm-pin"><Input id="admin-confirm-pin" name="confirmPin" type="password" autoComplete="new-password" maxLength={128} required /></Field>
+        <Feedback state={state} />
+        <Submit pending={pending}>Passwort ändern</Submit>
+      </form>
+    </DialogContent>
+  </Dialog>;
 }
 
 export interface BasinFormItem {

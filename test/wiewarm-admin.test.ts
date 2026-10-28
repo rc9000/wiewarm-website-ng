@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { openSession, sealSession } from '@/lib/session-crypto';
-import { deleteNews, imageIdFromPath, isUsablePin, isValidBadId, saveTemperatures, verifyLogin } from '@/lib/wiewarm-admin';
+import { changePassword, deleteNews, imageIdFromPath, isUsablePin, isValidBadId, saveTemperatures, verifyLogin } from '@/lib/wiewarm-admin';
 
 afterEach(() => vi.unstubAllGlobals());
 
@@ -61,6 +61,15 @@ describe('admin API', () => {
     vi.stubGlobal('fetch', fetchMock);
     await deleteNews(session, '25000296');
     expect(fetchMock.mock.calls[0][0]).toBe('https://www.wiewarm.ch/api/v1/news/199/p%2Fin%201/25000296');
+  });
+
+  it('sends the current and new password in the body of the password change', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response('{"success":"OK"}', { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock);
+    await changePassword('199', 'old pin', 'new pin');
+    expect(fetchMock.mock.calls[0][0]).toBe('https://www.wiewarm.ch/api/v1/login/password');
+    expect(fetchMock.mock.calls[0][1]).toMatchObject({ method: 'PUT' });
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ badid: '199', pincode: 'old pin', new_password: 'new pin' });
   });
 
   it('extracts image ids from image paths', () => {

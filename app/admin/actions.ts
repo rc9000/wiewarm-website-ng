@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { endSession, getSession, startSession } from '@/lib/session';
 import { WiewarmApiError } from '@/lib/wiewarm-api';
-import { BASIN_STATUS, MAX_IMAGE_BYTES, addNews, deleteImage, deleteNews, isUsablePin, isValidBadId, saveBaseData, saveTemperatures, uploadImage, verifyLogin, type BaseData } from '@/lib/wiewarm-admin';
+import { BASIN_STATUS, MAX_IMAGE_BYTES, addNews, changePassword as changePasswordRequest, deleteImage, deleteNews, isUsablePin, isValidBadId, saveBaseData, saveTemperatures, uploadImage, verifyLogin, type BaseData } from '@/lib/wiewarm-admin';
 import type { AdminSession } from '@/lib/session-crypto';
 import type { ActionState } from '@/app/admin/action-state';
 
@@ -58,6 +58,31 @@ export async function login(_previous: ActionState | null, formData: FormData): 
 export async function logout(): Promise<void> {
   await endSession();
   redirect('/admin');
+}
+
+export async function changePassword(_previous: ActionState | null, formData: FormData): Promise<ActionState> {
+  const currentPin = field(formData, 'currentPin');
+  const newPin = field(formData, 'newPin');
+  if (!currentPin) return failure('Bitte gib Dein aktuelles Passwort ein.');
+  if (!newPin) return failure('Bitte gib ein neues Passwort ein.');
+  if (newPin !== field(formData, 'confirmPin')) return failure('Die beiden neuen Passwörter stimmen nicht überein.');
+  if (newPin === currentPin) return failure('Das neue Passwort muss sich vom aktuellen unterscheiden.');
+  // The new password is also used in the login URL path, so it must be representable there.
+  if (!isUsablePin(newPin)) return failure('Das neue Passwort darf höchstens 128 Zeichen lang sein und keinen Schrägstrich (/) enthalten.');
+
+  const session = await getSession();
+  if (!session) return failure('Die Sitzung ist abgelaufen. Bitte melde Dich neu an.');
+  try {
+    await changePasswordRequest(session.badid, currentPin, newPin);
+  } catch (error) {
+    console.error('password change failed', error instanceof Error ? error.message : error);
+    if (error instanceof WiewarmApiError && error.status === 401) return failure('Das aktuelle Passwort ist falsch.');
+    return failure(describeError(error));
+  }
+  // Keep the user signed in with the new password.
+  await startSession(session.badid, newPin);
+  revalidatePath('/admin');
+  return success('Dein Passwort wurde geändert.');
 }
 
 export async function updateTemperatures(_previous: ActionState | null, formData: FormData): Promise<ActionState> {

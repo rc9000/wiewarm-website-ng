@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Clock3, Images, KeyRound, Megaphone, ShieldCheck, Thermometer, UserRoundCog } from 'lucide-react';
+import { Clock3, Images, KeyRound, ShieldAlert, Megaphone, ShieldCheck, Thermometer, UserRoundCog } from 'lucide-react';
 import { getSession } from '@/lib/session';
 import { getSwimmingLocation, WiewarmApiError, type SwimmingLocationDetail } from '@/lib/wiewarm-api';
 import { BASIN_STATUS, getNews, imageIdFromPath, type AdminNews } from '@/lib/wiewarm-admin';
-import { AdminImage, BaseDataForm, ImageDeleteButton, ImageUploadForm, LoginForm, LogoutButton, NewsDeleteButton, NewsForm, TemperatureForm } from '@/app/admin/admin-forms';
+import { AdminImage, BaseDataForm, ChangePasswordDialog, ImageDeleteButton, ImageUploadForm, LoginForm, LogoutButton, NewsDeleteButton, NewsForm, TemperatureForm } from '@/app/admin/admin-forms';
 
 export const metadata: Metadata = {
   title: 'Login für Badmeister',
@@ -35,7 +35,9 @@ function Section({ id, icon, title, children }: { id: string; icon: React.ReactN
   </section>;
 }
 
-function DashboardView({ location, news }: { location: SwimmingLocationDetail; news: AdminNews[] }) {
+const SHORT_PASSWORD_LENGTH = 4;
+
+function DashboardView({ location, news, shortPassword }: { location: SwimmingLocationDetail; news: AdminNews[]; shortPassword: boolean }) {
   const basins = location.basins.map((basin) => ({
     beckenid: basin.beckenid,
     name: basin.name,
@@ -56,8 +58,10 @@ function DashboardView({ location, news }: { location: SwimmingLocationDetail; n
         <h1>{location.name}, {location.city}</h1>
         <p>Bad-Id {location.badid} · <Link href={`/bad/${location.badid}`}>Öffentliche Seite ansehen</Link></p>
       </div>
-      <LogoutButton />
+      <div className="admin-actions"><ChangePasswordDialog /><LogoutButton /></div>
     </header>
+
+    {shortPassword ? <p className="admin-notice" role="alert"><ShieldAlert aria-hidden="true" /><span><strong>Dein Passwort ist sehr kurz.</strong> Bitte wähle aus Sicherheitsgründen ein neues, längeres Passwort mit der Schaltfläche «Passwort ändern».</span></p> : null}
 
     <div className="info-grid admin-grid-layout">
       <Section id="temperaturen" icon={<Thermometer aria-hidden="true" />} title="Temperatur oder Beckenstatus aktualisieren">
@@ -116,5 +120,5 @@ export default async function AdminPage() {
     console.error('admin page failed', error instanceof WiewarmApiError ? error.message : error);
     return null;
   });
-  return data ? <DashboardView location={data[0]} news={data[1]} /> : <LoadError />;
+  return data ? <DashboardView location={data[0]} news={data[1]} shortPassword={session.pin.length <= SHORT_PASSWORD_LENGTH} /> : <LoadError />;
 }

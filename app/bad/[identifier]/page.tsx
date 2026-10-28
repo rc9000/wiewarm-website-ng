@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Clock3, ExternalLink, Images, Info, Mail, MapPin, Phone, Sun, Ticket, Waves } from 'lucide-react';
+import { ArrowLeft, ChartLine, Clock3, ExternalLink, Images, Info, Mail, MapPin, Phone, Sun, Ticket, Waves } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { TemperatureHistory } from '@/components/temperature-history';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { ImageGallery } from '@/components/image-gallery';
 import { formatTemperature } from '@/lib/format-temperature';
-import { getSwimmingLocation, latestLocationNews, normalizeRouteIdentifier, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
+import { getSwimmingLocation, getTemperatureTimeseries, latestLocationNews, normalizeRouteIdentifier, swimmingLocationExists, WiewarmApiError, type Basin } from '@/lib/wiewarm-api';
 
 type RouteParams = { identifier: string };
 
@@ -55,6 +56,12 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
     if (error instanceof WiewarmApiError && error.status === 500 && !(await swimmingLocationExists(normalizedIdentifier))) notFound();
     throw error;
   }
+
+  // History is optional: the page still renders when the timeseries is unavailable.
+  const series = await getTemperatureTimeseries(location.badid).catch((error: unknown) => {
+    console.warn('Temperature history unavailable', error instanceof Error ? error.message : error);
+    return null;
+  });
 
   const addressLines = [location.address1, location.address2, [location.postalCode, location.city].filter(Boolean).join(' ')].filter(Boolean);
   const recentWeather = location.weather.filter((entry) => isRecent(entry.date, 3));
@@ -108,6 +115,11 @@ export default async function SwimmingLocationPage({ params }: { params: Promise
         </section> : null}
       </aside>
     </div>
+
+    {series && series.pools.length && series.points.length ? <section className="detail-card history-card" aria-labelledby="history-heading">
+      <div className="section-heading"><div className="section-icon"><ChartLine aria-hidden="true" /></div><div><p>Verlauf</p><h2 id="history-heading">Temperaturverlauf</h2></div></div>
+      <TemperatureHistory series={series} mainPoolIds={location.basins.filter((basin) => basin.isMain).map((basin) => basin.beckenid)} />
+    </section> : null}
   </main>;
 }
 

@@ -68,6 +68,10 @@ export async function verifyLogin(badid: string, pin: string): Promise<boolean> 
   return true;
 }
 
+export async function changePassword(badid: string, currentPin: string, newPin: string): Promise<void> {
+  await expectOk(await request('PUT', '/login/password', { json: { badid, pincode: currentPin, new_password: newPin } }));
+}
+
 export async function saveTemperatures(session: AdminSession, temp: Record<string, number>, status: Record<string, number>): Promise<void> {
   await expectOk(await request('POST', '/temperature', { json: { badid: session.badid, pincode: session.pin, temp, status } }));
 }
